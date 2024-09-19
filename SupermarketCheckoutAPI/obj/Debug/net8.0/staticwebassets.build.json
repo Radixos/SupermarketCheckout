@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "DZnWPSd17ZzbXVTMx6c1BOA/oBe2pkrLPrwwAXzzaHc=",
+  "Source": "SupermarketCheckoutAPI",
+  "BasePath": "_content/SupermarketCheckoutAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

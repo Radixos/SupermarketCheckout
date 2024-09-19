@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="27839c02-e82f-4012-a5a7-7f64b7b0e302" ChangeDateTime="09/17/2024 11:28:59">
+    <Property Name="ElementName" Value="[dbo].[BasketItem].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BasketItem]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SKU" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="49a584e1-4917-459e-9f27-5350e78b2da2" ChangeDateTime="09/17/2024 11:31:05">
+    <Property Name="ElementName" Value="[dbo].[Offer].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Offer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OfferId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ae4498f4-ee65-4f6d-a54a-cc9aaa49d464" ChangeDateTime="09/17/2024 11:31:25">
+    <Property Name="ElementName" Value="[dbo].[Offer].[O]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Offer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OfferType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="beca63a5-240e-4d8d-9f29-745f7858da6f" ChangeDateTime="09/17/2024 11:32:40">
+    <Property Name="ElementName" Value="[dbo].[Offer].[OfferQUantity]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Offer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OfferQuantity" />
+  </Operation>
+</Operations>

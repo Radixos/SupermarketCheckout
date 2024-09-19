@@ -1,0 +1,6 @@
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\Database\bin\Debug\SupermarketCheckout.Database.dacpac
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\Database\bin\Debug\Database.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\Database\bin\Debug\Database.pdb
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\Database\obj\Debug\SupermarketCheckout.Database.sqlproj.AssemblyReference.cache
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\Database\obj\Debug\Database.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\Database\obj\Debug\Database.pdb

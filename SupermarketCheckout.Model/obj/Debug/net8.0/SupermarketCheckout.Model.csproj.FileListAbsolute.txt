@@ -1,0 +1,11 @@
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\bin\Debug\net8.0\SupermarketCheckout.Model.deps.json
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\bin\Debug\net8.0\SupermarketCheckout.Model.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\bin\Debug\net8.0\SupermarketCheckout.Model.pdb
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\SupermarketCheckout.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\SupermarketCheckout.Model.AssemblyInfoInputs.cache
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\SupermarketCheckout.Model.AssemblyInfo.cs
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\SupermarketCheckout.Model.csproj.CoreCompileInputs.cache
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\SupermarketCheckout.Model.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\refint\SupermarketCheckout.Model.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\SupermarketCheckout.Model.pdb
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Model\obj\Debug\net8.0\ref\SupermarketCheckout.Model.dll

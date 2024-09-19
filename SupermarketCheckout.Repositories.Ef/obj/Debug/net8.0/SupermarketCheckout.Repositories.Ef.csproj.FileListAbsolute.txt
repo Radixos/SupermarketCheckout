@@ -1,0 +1,15 @@
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\bin\Debug\net8.0\SupermarketCheckout.Repositories.Ef.deps.json
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\bin\Debug\net8.0\SupermarketCheckout.Repositories.Ef.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\bin\Debug\net8.0\SupermarketCheckout.Repositories.Ef.pdb
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\bin\Debug\net8.0\SupermarketCheckout.Model.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\bin\Debug\net8.0\SupermarketCheckout.Model.pdb
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\SupermarketCheckout.Repositories.Ef.csproj.AssemblyReference.cache
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\SupermarketCheckout.Repositories.Ef.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\SupermarketCheckout.Repositories.Ef.AssemblyInfoInputs.cache
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\SupermarketCheckout.Repositories.Ef.AssemblyInfo.cs
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\SupermarketCheckout.Repositories.Ef.csproj.CoreCompileInputs.cache
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\Supermar.DA65C259.Up2Date
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\SupermarketCheckout.Repositories.Ef.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\refint\SupermarketCheckout.Repositories.Ef.dll
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\SupermarketCheckout.Repositories.Ef.pdb
+C:\Users\radixos\Desktop\SupermarketCheckoutAPI\SupermarketCheckout.Repositories.Ef\obj\Debug\net8.0\ref\SupermarketCheckout.Repositories.Ef.dll
