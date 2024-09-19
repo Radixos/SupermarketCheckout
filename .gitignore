@@ -1,2 +1,40 @@
-*.dbmdl
-*.jfm
+# Ignore the Visual Studio solution and project specific files
+.vs/
+*.csproj.user
+*.suo
+*.user
+*.rsuser
+*.ncrunch*
+*.localhistory
+*.dotSettings
+
+# Ignore build results
+bin/
+obj/
+TestResults/
+
+# Ignore any logs or crash reports
+*.log
+
+# Ignore NuGet packages (if you don't want to include packages in your repo)
+packages/
+*.nupkg
+*.snupkg
+
+# Ignore databases
+*.db
+*.mdf
+*.ldf
+
+# Ignore generated files
+*.Designer.cs
+Generated_Code/
+
+# Ignore configuration
+appsettings.Development.json
+
+# Ignore SDK-style project-specific files
+SupermarketCheckoutAPI/Properties/launchSettings.json
+
+# Ignore the local SQL Server database model file that caused the permission issue
+SupermarketCheckout.Database.dbmdl
