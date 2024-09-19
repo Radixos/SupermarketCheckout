@@ -15,7 +15,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<BasketItemPrice> GetBasketItemPriceBySKUAsync(char sku)
+        public async Task<BasketItemPrice> GetBasketItemPriceBySKUAsync(char sku)   //TODO: fix
         {
             if (char.IsWhiteSpace(sku))
             {

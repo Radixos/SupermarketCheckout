@@ -7,7 +7,7 @@ namespace SupermarketCheckout.Model
     {
         private List<BasketItem> _basketItems { get; }
 
-        public Basket(string SKUs) //TODO: test null, A, AB etc
+        public Basket(string SKUs)
         {
             if (string.IsNullOrWhiteSpace(SKUs))
             {
