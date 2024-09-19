@@ -38,3 +38,6 @@ SupermarketCheckoutAPI/Properties/launchSettings.json
 
 # Ignore the local SQL Server database model file that caused the permission issue
 SupermarketCheckout.Database.dbmdl
+
+# Ignore other files
+*.jfm
