@@ -33,9 +33,6 @@ Generated_Code/
 # Ignore configuration
 appsettings.Development.json
 
-# Ignore SDK-style project-specific files
-SupermarketCheckoutAPI/Properties/launchSettings.json
-
 # Ignore the local SQL Server database model file that caused the permission issue
 SupermarketCheckout.Database.dbmdl
 
