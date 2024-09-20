@@ -1,11 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using SupermarketCheckoutAPI.DTOs;
 using SupermarketCheckout.Application.Services;
+using SupermarketCheckoutAPI.Filters;
+
+/*
+TODO: Endpoint should receive a list of strings for more scalability
+TODO: Collection of offers on product obj
+TODO: Introduce IOfferFactory (will need to set up in the Program.cs)
+*/
 
 namespace SupermarketCheckoutAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [ModelStateErrorRequestFilter]
     public class CheckoutController : Controller
     {
         private readonly ICheckoutService _checkoutService;
@@ -16,18 +25,8 @@ namespace SupermarketCheckoutAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CheckoutResponseDto>> Post([FromBody] CheckoutRequestDto request)
+        public async Task<ActionResult<CheckoutResponseDto>> Post([FromBody][Required] CheckoutRequestDto request)
         {
-            if (request == null)
-            {
-                return BadRequest(request);
-            }
-
-            if (string.IsNullOrWhiteSpace(request.SKUs))
-            {
-                return BadRequest(request.SKUs);
-            }
-
             try
             {
                 var totalPrice = await _checkoutService.GetTotalPriceAsync(request.SKUs);
