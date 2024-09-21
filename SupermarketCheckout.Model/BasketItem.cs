@@ -6,12 +6,12 @@ namespace SupermarketCheckout.Model
 {
     public class BasketItem
     {
-        public char SKU { get; }
+        public string SKU { get; }
         public int Quantity { get; }
 
-        public BasketItem(char sku, int quantity)
+        public BasketItem(string sku, int quantity)
         {
-            if (char.IsWhiteSpace(sku))
+            if (string.IsNullOrWhiteSpace(sku))
             {
                 throw new ArgumentException(nameof(sku));
             }

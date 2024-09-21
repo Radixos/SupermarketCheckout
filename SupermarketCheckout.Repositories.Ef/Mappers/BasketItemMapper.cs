@@ -19,11 +19,16 @@ namespace SupermarketCheckout.Repositories.Ef.Mappers
 
         public static Offer? MapToOffer(OfferEntity? entity)
         {
-            return entity == null || !entity.OfferQuantity.HasValue || !entity.OfferPrice.HasValue
-                ? null
-                : Offer.CreateOffer(entity.OfferType,
-                    entity.OfferQuantity.Value,
-                    entity.OfferPrice.Value);
+            if (entity == null || !entity.OfferQuantity.HasValue || !entity.OfferPrice.HasValue)
+            {
+                return null;
+            }
+
+            var offerFactory = new OfferFactory();
+            return offerFactory.CreateOffer(
+                entity.OfferType,
+                entity.OfferQuantity.Value,
+                entity.OfferPrice.Value);
         }
     }
 }

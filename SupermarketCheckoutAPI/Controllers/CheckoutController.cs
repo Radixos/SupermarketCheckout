@@ -7,7 +7,7 @@ using SupermarketCheckoutAPI.Filters;
 /*
 TODO: Endpoint should receive a list of strings for more scalability
 TODO: Collection of offers on product obj
-TODO: Introduce IOfferFactory (will need to set up in the Program.cs)
+TODO: Introduce OfferFactory (will need to set up in the Program.cs)
 */
 
 namespace SupermarketCheckoutAPI.Controllers

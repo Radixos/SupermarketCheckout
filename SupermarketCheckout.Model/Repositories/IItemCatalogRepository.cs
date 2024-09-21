@@ -2,6 +2,6 @@
 {
     public interface IItemCatalogRepository
     {
-        Task<BasketItemPrice> GetBasketItemPriceBySKUAsync(char sku);
+        Task<BasketItemPrice> GetBasketItemPriceBySKUAsync(string sku);
     }
 }

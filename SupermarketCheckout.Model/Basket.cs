@@ -7,14 +7,14 @@ namespace SupermarketCheckout.Model
     {
         private List<BasketItem> _basketItems { get; }
 
-        public Basket(string SKUs)
+        public Basket(List<string> SKUs)
         {
-            if (string.IsNullOrWhiteSpace(SKUs))
+            if (SKUs.Count < 1)
             {
                 throw new ArgumentException(nameof(SKUs));
             }
 
-            var itemsList = new Dictionary<char, int>();
+            var itemsList = new Dictionary<string, int>();
 
             foreach (var sku in SKUs)
             {

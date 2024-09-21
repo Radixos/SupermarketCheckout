@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SupermarketCheckout.Application.Services;
+using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Repositories;
 using SupermarketCheckout.Repositories.Ef;
 
@@ -17,7 +18,8 @@ builder.Services.AddDbContext<SupermarketContext>(options =>
 
 builder.Services
     .AddScoped<ICheckoutService, CheckoutService>()
-    .AddScoped<IItemCatalogRepository, ItemCatalogRepository>();
+    .AddScoped<IItemCatalogRepository, ItemCatalogRepository>()
+    .AddScoped<IOfferFactory, OfferFactory>();
 
 var app = builder.Build();
 

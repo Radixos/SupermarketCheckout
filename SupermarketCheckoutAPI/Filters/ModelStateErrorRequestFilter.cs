@@ -20,7 +20,6 @@ namespace SupermarketCheckoutAPI.Filters
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
-
         }
     }
 }

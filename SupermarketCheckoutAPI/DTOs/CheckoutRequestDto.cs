@@ -2,6 +2,6 @@
 {
     public class CheckoutRequestDto
     {
-        public string SKUs { get; set; }
+        public List<string> SKUs { get; set; }
     }
 }
