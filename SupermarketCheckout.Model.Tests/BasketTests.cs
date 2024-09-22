@@ -6,13 +6,13 @@ namespace SupermarketCheckout.Model.Tests
         [TestMethod]
         public void EnsureSKUsIsNotNullInTheConstructor()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Basket(null));
+            Assert.ThrowsException<ArgumentNullException>(() => new Basket(null));
         }
 
         [TestMethod]
         public void EnsureSKUsIsNotEmptyInTheConstructor()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Basket(""));
+            Assert.ThrowsException<ArgumentException>(() => new Basket(new List<string>()));
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace SupermarketCheckout.Model.Tests
 
         private Basket GetBasket()
         {
-            return new Basket("ABCD");
+            return new Basket(new List<string> { "A", "B", "C", "D" });
         }
     }
 }

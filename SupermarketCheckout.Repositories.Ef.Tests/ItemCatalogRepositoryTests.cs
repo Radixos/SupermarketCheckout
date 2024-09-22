@@ -19,7 +19,7 @@ namespace SupermarketCheckout.Repositories.Ef.Tests
             var repo = GetItemCatalogRepository();
 
             await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() =>
-                repo.GetBasketItemPriceBySKUAsync(' '));
+                repo.GetBasketItemPriceBySKUAsync(" "));
         }
 
         private ItemCatalogRepository GetItemCatalogRepository()

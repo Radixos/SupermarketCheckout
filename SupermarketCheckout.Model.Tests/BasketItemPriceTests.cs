@@ -50,7 +50,7 @@
         {
             return new BasketItemPrice(
                 50,
-                Offer.CreateOffer("MultiBuy", 3, 130));
+                new MultiBuyOffer(3, 130));
         }
     }
 }

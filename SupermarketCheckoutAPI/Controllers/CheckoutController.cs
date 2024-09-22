@@ -5,9 +5,9 @@ using SupermarketCheckout.Application.Services;
 using SupermarketCheckoutAPI.Filters;
 
 /*
-TODO: Endpoint should receive a list of strings for more scalability
-TODO: Collection of offers on product obj
-TODO: Introduce OfferFactory (will need to set up in the Program.cs)
+TODO: Do I need to move the tests after introducing OfferFactory? Or add specific to OfferFactory?
+TODO: Add method to add data to the db
+TODO: Automate db setting up process
 */
 
 namespace SupermarketCheckoutAPI.Controllers

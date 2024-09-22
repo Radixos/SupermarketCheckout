@@ -1,5 +1,4 @@
 ﻿using SupermarketCheckout.Model.Repositories;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SupermarketCheckout.Model
 {
@@ -9,6 +8,11 @@ namespace SupermarketCheckout.Model
 
         public Basket(List<string> SKUs)
         {
+            if (SKUs == null)
+            {
+                throw new ArgumentNullException(nameof(SKUs));
+            }
+
             if (SKUs.Count < 1)
             {
                 throw new ArgumentException(nameof(SKUs));

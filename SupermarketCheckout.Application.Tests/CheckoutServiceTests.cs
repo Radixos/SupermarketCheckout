@@ -19,14 +19,14 @@ namespace SupermarketCheckout.Application.Tests
         public async Task EnsureGetTotalPriceAsyncThrowsWhenSKUsIsNullAsync()
         {
             var service = GetCheckoutService();
-            await Assert.ThrowsExceptionAsync<ArgumentException>(() => service.GetTotalPriceAsync(null));
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => service.GetTotalPriceAsync(null));
         }
 
         [TestMethod]
         public async Task EnsureGetTotalPriceAsyncThrowsWhenSKUsIsEmptyAsync()
         {
             var service = GetCheckoutService();
-            await Assert.ThrowsExceptionAsync<ArgumentException>(() => service.GetTotalPriceAsync(""));
+            await Assert.ThrowsExceptionAsync<ArgumentException>(() => service.GetTotalPriceAsync(new List<string>()));
         }
 
         private CheckoutService GetCheckoutService()
