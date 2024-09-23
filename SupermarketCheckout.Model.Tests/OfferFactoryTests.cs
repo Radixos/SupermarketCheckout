@@ -1,7 +1,7 @@
 ﻿namespace SupermarketCheckout.Model.Tests
 {
     [TestClass]
-    public class OfferTests
+    public class OfferFactoryTests
     {
         [TestMethod]
         public void EnsureOfferTypeIsSuppliedToCreateOffer()

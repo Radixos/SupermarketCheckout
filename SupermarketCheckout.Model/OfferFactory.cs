@@ -4,10 +4,10 @@ namespace SupermarketCheckout.Model
 {
     public class OfferFactory : IOfferFactory
     {
-        public Offer CreateOffer(string offerType, int offerQuantity, decimal offerPrice)
+        public Offer CreateOffer(string offerType, int offerQuantity, decimal offerPrice)   //TODO: write tests (offer type "MultiBuy", test lower case letters)
         {
             if (string.IsNullOrWhiteSpace(offerType)) {
-                throw new ArgumentException(nameof(offerType));
+                throw new ArgumentException("Cannot be null or white space", nameof(offerType));
             }
 
             if (offerQuantity <= 0) {

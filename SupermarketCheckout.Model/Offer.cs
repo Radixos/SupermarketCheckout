@@ -4,7 +4,7 @@ namespace SupermarketCheckout.Model
 {
     public abstract class Offer
     {
-        protected Offer(int offerQuantity, decimal offerPrice)
+        protected Offer(int offerQuantity, decimal offerPrice)  //TODO: Write new tests
         {
             if (offerQuantity <= 0) {
                 throw new ArgumentOutOfRangeException(nameof(offerQuantity));

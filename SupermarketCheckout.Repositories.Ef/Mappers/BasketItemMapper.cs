@@ -5,7 +5,7 @@ namespace SupermarketCheckout.Repositories.Ef.Mappers
 {
     internal static class BasketItemMapper
     {
-        public static BasketItemPrice MapToBasketItemPrice(BasketItemEntity entity)
+        public static BasketItemPrice MapToBasketItemPrice(BasketItemEntity entity, IOfferFactory offerFactory)
         {
             if (entity == null)
             {
@@ -14,17 +14,16 @@ namespace SupermarketCheckout.Repositories.Ef.Mappers
 
             return new BasketItemPrice(
                 entity.Price,
-                MapToOffer(entity.Offer));
+                MapToOffer(entity.Offer, offerFactory));
         }
 
-        public static Offer? MapToOffer(OfferEntity? entity)
+        public static Offer? MapToOffer(OfferEntity? entity, IOfferFactory offerFactory)
         {
             if (entity == null || !entity.OfferQuantity.HasValue || !entity.OfferPrice.HasValue)
             {
                 return null;
             }
 
-            var offerFactory = new OfferFactory();
             return offerFactory.CreateOffer(
                 entity.OfferType,
                 entity.OfferQuantity.Value,

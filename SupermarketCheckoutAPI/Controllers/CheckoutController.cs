@@ -5,7 +5,6 @@ using SupermarketCheckout.Application.Services;
 using SupermarketCheckoutAPI.Filters;
 
 /*
-TODO: Do I need to move the tests after introducing OfferFactory? Or add specific to OfferFactory?
 TODO: Add method to add data to the db
 TODO: Automate db setting up process
 */
@@ -25,13 +24,13 @@ namespace SupermarketCheckoutAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CheckoutResponseDto>> Post([FromBody][Required] CheckoutRequestDto request)
+        public async Task<ActionResult<CheckoutResponse>> PostAsync([FromBody][Required] CheckoutRequest request)
         {
             try
             {
                 var totalPrice = await _checkoutService.GetTotalPriceAsync(request.SKUs);
 
-                var response = new CheckoutResponseDto
+                var response = new CheckoutResponse
                 {
                     TotalPrice = totalPrice
                 };

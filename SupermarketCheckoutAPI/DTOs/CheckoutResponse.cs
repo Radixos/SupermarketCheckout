@@ -1,6 +1,6 @@
 ﻿namespace SupermarketCheckoutAPI.DTOs
 {
-    public class CheckoutResponseDto
+    public class CheckoutResponse
     {
         public decimal TotalPrice { get; set; }
     }

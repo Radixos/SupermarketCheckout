@@ -8,14 +8,17 @@ namespace SupermarketCheckout.Repositories.Ef
     public class ItemCatalogRepository : IItemCatalogRepository
     {
         private readonly SupermarketContext _context;
+        private readonly IOfferFactory _offerFactory;
 
-        public ItemCatalogRepository(SupermarketContext context)
+        public ItemCatalogRepository(SupermarketContext context, IOfferFactory offerFactory)
         {
             _context = context 
                 ?? throw new ArgumentNullException(nameof(context));
+            _offerFactory = offerFactory
+                ?? throw new ArgumentNullException(nameof(offerFactory));
         }
 
-        public async Task<BasketItemPrice> GetBasketItemPriceBySKUAsync(string sku)   //TODO: fix
+        public async Task<BasketItemPrice> GetBasketItemPriceBySKUAsync(string sku)
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
@@ -26,7 +29,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 .Include(basketItems => basketItems.Offer)
                 .FirstOrDefaultAsync(basketItem => basketItem.SKU == sku);
 
-            return BasketItemMapper.MapToBasketItemPrice(basketItem);
+            return BasketItemMapper.MapToBasketItemPrice(basketItem, _offerFactory);
         }
     }
 }

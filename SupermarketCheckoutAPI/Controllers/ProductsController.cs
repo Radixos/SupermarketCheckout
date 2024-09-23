@@ -2,28 +2,29 @@
 using SupermarketCheckout.Application.Services;
 using SupermarketCheckoutAPI.DTOs;
 using SupermarketCheckoutAPI.Filters;
+using SupermarketCheckoutAPI.Mappers;
 
 namespace SupermarketCheckoutAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     [ModelStateErrorRequestFilter]
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         private readonly IProductService _productService;
 
-        public ProductController(IProductService productService)
+        public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] ProductDto productDto)
+        public async Task<ActionResult> PostAsync([FromBody] Product product)
         {
             try
             {
-                await _productService.AddProductAsync(productDto);    // Should I keep passing object around or variables? If so, how?
-                return Ok("Product added successfully.");
+                await _productService.AddProductAsync(ProductMapper.MapToProductDto(product));
+                return Created();
             }
             catch (ArgumentException ex)
             {
@@ -36,6 +37,5 @@ namespace SupermarketCheckoutAPI.Controllers
                 return StatusCode(500, "Internal server error occured.");
             }
         }
-
     }
 }
