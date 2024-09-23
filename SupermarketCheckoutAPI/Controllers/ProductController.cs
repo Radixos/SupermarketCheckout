@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SupermarketCheckout.Application.Services;
+using SupermarketCheckoutAPI.DTOs;
 using SupermarketCheckoutAPI.Filters;
 
 namespace SupermarketCheckoutAPI.Controllers
@@ -21,7 +22,7 @@ namespace SupermarketCheckoutAPI.Controllers
         {
             try
             {
-                await _productService.AddProductAsync(productDto);
+                await _productService.AddProductAsync(productDto);    // Should I keep passing object around or variables? If so, how?
                 return Ok("Product added successfully.");
             }
             catch (ArgumentException ex)

@@ -1,10 +1,19 @@
-﻿namespace SupermarketCheckout.Application.Services
+﻿using SupermarketCheckout.Application.DTOs;
+
+namespace SupermarketCheckout.Application.Services
 {
     public class ProductService : IProductService
     {
-        //public Task AddProductAsync(ProductDto productDto)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private readonly 
+
+        public ProductService()
+        {
+
+        }
+
+        public Task AddProductAsync(ProductDto productDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

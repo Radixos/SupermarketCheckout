@@ -6,6 +6,7 @@ namespace SupermarketCheckoutAPI.DTOs
     {
         public string SKU { get; set; }
         public decimal Price { get; set; }
-        public Offer? Offer { get; set; } // Is it okay to link to domain model in DTO on API?
+        public string OfferType { get; set; } // Is it okay to link to domain model in DTO on API? previously was
+                                              // public Offer offer { get; set; }
     }
 }
