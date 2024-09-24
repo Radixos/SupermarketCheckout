@@ -1,19 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SupermarketCheckoutAPI.DTOs;
-using SupermarketCheckoutAPI.Mappers;
+using SupermarketCheckoutAPI.Filters;
 
 namespace SupermarketCheckoutAPI.Controllers
 {
+    [ApiController]
     [Route("api/products/{sku}/price")]
+    [ModelStateErrorRequestFilter]
     public class ProductsPriceController : Controller
     {
-        // TODO: Add a get to return a price of one product
+        [HttpGet]
+        public async Task<ActionResult> GetAsync(string SKU)    //TODO: finish a method to return a price of a single product
+        {
+            throw new NotImplementedException();
+        }
+
         [HttpPut]
-        public async Task<ActionResult> PutAsync(string SKU, [FromBody] Product product)
+        public async Task<ActionResult> PutAsync(string SKU, decimal newPrice)
         {
             try
             {
-                //Add app call
+                throw new NotImplementedException();
                 return Accepted();
             }
             catch (ArgumentException ex)

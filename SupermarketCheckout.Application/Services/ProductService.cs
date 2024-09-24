@@ -1,4 +1,5 @@
 ﻿using SupermarketCheckout.Application.DTOs;
+using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Repositories;
 
 namespace SupermarketCheckout.Application.Services
@@ -13,9 +14,25 @@ namespace SupermarketCheckout.Application.Services
                 ?? throw new ArgumentNullException(nameof(productRepository));
         }
 
-        public Task AddProductAsync(ProductDto productDto)
+        public async Task<Product> GetProductAsync(string SKU)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(SKU))
+            {
+                throw new ArgumentException("Cannot be null or white space", nameof(SKU));
+            }
+
+            return await _productRepository.GetProductAsync(SKU);
+        }
+
+        public async Task AddProductAsync(ProductDto productDto)
+        {
+            if (productDto == null)
+            {
+                throw new ArgumentNullException(nameof(productDto));
+            }
+
+            var product = new Product(productDto.SKU, productDto.Price, productDto.OfferType ?? null);  //TODO ASK: Is this the right way? At what point should I break the object down?
+            await product.AddProductAsync(_productRepository);
         }
     }
 }

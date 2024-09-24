@@ -1,9 +1,11 @@
 ﻿using SupermarketCheckout.Application.DTOs;
+using SupermarketCheckout.Model;
 
 namespace SupermarketCheckout.Application.Services
 {
     public interface IProductService
     {
-        Task AddProductAsync(ProductDto productDto);    // Should I have separate DTOs per each layer?
+        Task<Product> GetProductAsync(string SKU);
+        Task AddProductAsync(ProductDto productDto);
     }
 }

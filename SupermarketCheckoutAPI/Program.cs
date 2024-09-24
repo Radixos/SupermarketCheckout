@@ -20,7 +20,8 @@ builder.Services
     .AddScoped<ICheckoutService, CheckoutService>()
     .AddScoped<IProductService, ProductService>()
     .AddScoped<IItemCatalogRepository, ItemCatalogRepository>()
-    .AddSingleton<IOfferFactory, OfferFactory>();   // because it can be reused
+    .AddScoped<IProductRepository, ProductRepository>()
+    .AddSingleton<IOfferFactory, OfferFactory>();
 
 var app = builder.Build();
 

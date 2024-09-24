@@ -11,7 +11,7 @@ namespace SupermarketCheckoutAPI.Mappers
             {
                 SKU = product.SKU,
                 Price = product.Price,
-                OfferType = product.OfferType
+                OfferType = product.OfferType ?? null
             };
         }
     }

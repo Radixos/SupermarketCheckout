@@ -15,7 +15,7 @@ namespace SupermarketCheckout.Model
 
             if (SKUs.Count < 1)
             {
-                throw new ArgumentException(nameof(SKUs));
+                throw new ArgumentException("Cannot be null or white space", nameof(SKUs));
             }
 
             var itemsList = new Dictionary<string, int>();

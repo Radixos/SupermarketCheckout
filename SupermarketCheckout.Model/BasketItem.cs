@@ -1,6 +1,4 @@
 ﻿using SupermarketCheckout.Model.Repositories;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupermarketCheckout.Model
 {
@@ -13,7 +11,7 @@ namespace SupermarketCheckout.Model
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentException(nameof(sku));
+                throw new ArgumentException("Cannot be null or white space", nameof(sku));
             }
 
             if (quantity <= 0)

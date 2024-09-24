@@ -4,6 +4,6 @@
     {
         public string SKU { get; set; }
         public decimal Price { get; set; }
-        public string OfferType { get; set; }
+        public string? OfferType { get; set; }
     }
 }
