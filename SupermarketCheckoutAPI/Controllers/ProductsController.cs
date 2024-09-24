@@ -22,13 +22,12 @@ namespace SupermarketCheckoutAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAsync(string SKU)
+        public async Task<ActionResult> GetAsync(string SKU)    //TODO: make SKUs lowercase
         {
             try
             {
-                var response = await _productService.GetProductAsync(SKU); 
-                // 1. Can I use the Dto on the application layer in a way: App -> Api?
-                // 2. Do I need to map the dto on the API layer?
+                var response = await _productService.GetProductAsync(SKU);  //TODO: have product in dto on app and map to product on application
+
                 return Ok(response);
             }
             catch (ArgumentException ex)
@@ -36,6 +35,11 @@ namespace SupermarketCheckoutAPI.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
+            //catch (NotFoundException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    return NotFound();
+            //}
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -49,8 +53,9 @@ namespace SupermarketCheckoutAPI.Controllers
             try
             {
                 await _productService.AddProductAsync(ProductMapper.MapToProductDto(product));
+                string? uri = Url.Action("Get", "Products", new { product.SKU });
 
-                return Created();
+                return Created(uri, product.SKU);
             }
             catch (ArgumentException ex)
             {

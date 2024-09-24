@@ -33,13 +33,14 @@ namespace SupermarketCheckout.Repositories.Ef
 
             if (product == null)
             {
-                throw new InvalidOperationException($"Product with SKU '{sku}' already exists.");
+                //throw new NotFoundException($"Product with SKU '{sku}' doesn't exists.");
+                throw new Exception($"Product with SKU '{sku}' doesn't exists.");
             }
 
             return new Product(product.SKU, product.Price, product.OfferType);
         }
 
-        public async Task AddProductAsync(string sku, decimal price, string? offerType = null)
+        public async Task AddProductAsync(string sku, decimal price, string? offerType = null)  //pass in a new model, do the validation for existing obj there
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
@@ -58,7 +59,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 offerEntity = await _context.Offer.FirstOrDefaultAsync(o => o.OfferType == offerType);
             }
 
-            var newProduct = new BasketItemEntity() //TODO Ask: Shouldnt I merge BasketItem and Product together on the Model?
+            var newProduct = new BasketItemEntity   //TODO: Change the BasketItem table name to Product
             {
                 SKU = sku,
                 Price = price,

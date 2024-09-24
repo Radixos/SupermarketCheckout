@@ -14,14 +14,14 @@ namespace SupermarketCheckout.Application.Services
                 ?? throw new ArgumentNullException(nameof(productRepository));
         }
 
-        public async Task<Product> GetProductAsync(string SKU)
+        public async Task<ProductDto> GetProductAsync(string SKU)
         {
             if (string.IsNullOrWhiteSpace(SKU))
             {
                 throw new ArgumentException("Cannot be null or white space", nameof(SKU));
             }
 
-            return await _productRepository.GetProductAsync(SKU);
+            return await _productRepository.GetProductAsync(SKU);   //TODO: map what repo returns to productdto
         }
 
         public async Task AddProductAsync(ProductDto productDto)
