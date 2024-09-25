@@ -1,4 +1,4 @@
-﻿namespace SupermarketCheckoutAPI.DTOs
+﻿namespace SupermarketCheckout.API.DTOs
 {
     public class CheckoutResponse
     {

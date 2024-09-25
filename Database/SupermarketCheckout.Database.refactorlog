@@ -5,7 +5,7 @@
     <Property Name="ElementType" Value="SqlSimpleColumn" />
     <Property Name="ParentElementName" Value="[dbo].[BasketItem]" />
     <Property Name="ParentElementType" Value="SqlTable" />
-    <Property Name="NewName" Value="SKU" />
+    <Property Name="NewName" Value="Sku" />
   </Operation>
   <Operation Name="Rename Refactor" Key="49a584e1-4917-459e-9f27-5350e78b2da2" ChangeDateTime="09/17/2024 11:31:05">
     <Property Name="ElementName" Value="[dbo].[Offer].[Id]" />

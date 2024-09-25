@@ -1,7 +1,7 @@
-﻿using SupermarketCheckout.API.DTOs;
-using SupermarketCheckout.Application.DTOs;
+﻿using SupermarketCheckout.Application.DTOs;
+using SupermarketCheckout.Model;
 
-namespace SupermarketCheckout.API.Mappers
+namespace SupermarketCheckout.Application.Mappers
 {
     public class ProductMapper
     {
@@ -11,7 +11,7 @@ namespace SupermarketCheckout.API.Mappers
             {
                 Sku = product.Sku,
                 Price = product.Price,
-                OfferType = product.OfferType ?? null
+                OfferType = product.OfferType
             };
         }
     }

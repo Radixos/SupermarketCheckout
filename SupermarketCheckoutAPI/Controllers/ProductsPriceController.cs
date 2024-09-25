@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SupermarketCheckoutAPI.DTOs;
-using SupermarketCheckoutAPI.Filters;
+using SupermarketCheckout.API.Filters;
 
-namespace SupermarketCheckoutAPI.Controllers
+namespace SupermarketCheckout.API.Controllers
 {
     [ApiController]
     [Route("api/products/{sku}/price")]
@@ -10,13 +9,13 @@ namespace SupermarketCheckoutAPI.Controllers
     public class ProductsPriceController : Controller
     {
         [HttpGet]
-        public async Task<ActionResult> GetAsync(string SKU)    //TODO: finish a method to return a price of a single product
+        public async Task<ActionResult> GetAsync(string sku)    //TODO: finish a method to return a price of a single product
         {
             throw new NotImplementedException();
         }
 
         [HttpPut]
-        public async Task<ActionResult> PutAsync(string SKU, decimal newPrice)
+        public async Task<ActionResult> PutAsync(string sku, decimal newPrice)
         {
             try
             {

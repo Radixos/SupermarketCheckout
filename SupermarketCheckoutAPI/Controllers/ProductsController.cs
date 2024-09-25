@@ -1,13 +1,13 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SupermarketCheckout.Application.Services;
-using SupermarketCheckoutAPI.DTOs;
-using SupermarketCheckoutAPI.Filters;
-using SupermarketCheckoutAPI.Mappers;
+using SupermarketCheckout.Model.Exceptions;
+using SupermarketCheckout.API.DTOs;
+using SupermarketCheckout.API.Filters;
+using SupermarketCheckout.API.Mappers;
 
 //TODO: Add relevant tests for all this and deeper
 
-namespace SupermarketCheckoutAPI.Controllers
+namespace SupermarketCheckout.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -22,11 +22,11 @@ namespace SupermarketCheckoutAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAsync(string SKU)    //TODO: make SKUs lowercase
+        public async Task<ActionResult> GetAsync(string sku)
         {
             try
             {
-                var response = await _productService.GetProductAsync(SKU);  //TODO: have product in dto on app and map to product on application
+                var response = await _productService.GetProductAsync(sku);  //TODO: have product in dto on app and map to product on application
 
                 return Ok(response);
             }
@@ -35,11 +35,11 @@ namespace SupermarketCheckoutAPI.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
-            //catch (NotFoundException ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    return NotFound();
-            //}
+            catch (NotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return NotFound();
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -53,9 +53,9 @@ namespace SupermarketCheckoutAPI.Controllers
             try
             {
                 await _productService.AddProductAsync(ProductMapper.MapToProductDto(product));
-                string? uri = Url.Action("Get", "Products", new { product.SKU });
+                string? uri = Url.Action("Get", "Products", new { product.Sku });
 
-                return Created(uri, product.SKU);
+                return Created(uri, product.Sku);
             }
             catch (ArgumentException ex)
             {
@@ -70,7 +70,7 @@ namespace SupermarketCheckoutAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteAsync(string SKU) //TODO: Finish a method to delete a product
+        public async Task<ActionResult> DeleteAsync(string sku) //TODO: Finish a method to delete a product
         {
             throw new NotImplementedException();
 

@@ -1,15 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using SupermarketCheckoutAPI.DTOs;
 using SupermarketCheckout.Application.Services;
-using SupermarketCheckoutAPI.Filters;
+using SupermarketCheckout.API.DTOs;
+using SupermarketCheckout.API.Filters;
 
-/*
-TODO: Add method to add data to the db
-TODO: Automate db setting up process
-*/
-
-namespace SupermarketCheckoutAPI.Controllers
+namespace SupermarketCheckout.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -28,7 +23,7 @@ namespace SupermarketCheckoutAPI.Controllers
         {
             try
             {
-                var totalPrice = await _checkoutService.GetTotalPriceAsync(request.SKUs);
+                var totalPrice = await _checkoutService.GetTotalPriceAsync(request.Skus);
 
                 var response = new CheckoutResponse
                 {

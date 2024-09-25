@@ -7,9 +7,9 @@ namespace SupermarketCheckout.Repositories.Ef.Entities
     {
         public void Configure(EntityTypeBuilder<BasketItemEntity> builder)
         {
-            builder.HasKey(e => e.SKU);
+            builder.HasKey(e => e.Sku);
 
-            builder.Property(e => e.SKU)
+            builder.Property(e => e.Sku)
                 .IsRequired()
                 .HasMaxLength(1);
 

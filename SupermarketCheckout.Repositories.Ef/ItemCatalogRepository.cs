@@ -18,7 +18,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 ?? throw new ArgumentNullException(nameof(offerFactory));
         }
 
-        public async Task<BasketItemPrice> GetBasketItemPriceBySKUAsync(string sku)
+        public async Task<BasketItemPrice> GetBasketItemPriceBySkuAsync(string sku)
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
@@ -27,7 +27,7 @@ namespace SupermarketCheckout.Repositories.Ef
 
             var basketItem = await _context.BasketItem
                 .Include(basketItems => basketItems.Offer)
-                .FirstOrDefaultAsync(basketItem => basketItem.SKU == sku);
+                .FirstOrDefaultAsync(basketItem => basketItem.Sku == sku);
 
             return BasketItemMapper.MapToBasketItemPrice(basketItem, _offerFactory);
         }

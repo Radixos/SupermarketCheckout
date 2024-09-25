@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace SupermarketCheckoutAPI.Filters
+namespace SupermarketCheckout.API.Filters
 {
     internal class ModelStateErrorRequestFilterAttribute : Attribute, IActionFilter
     {
@@ -12,7 +12,7 @@ namespace SupermarketCheckoutAPI.Filters
                 context.Result = new BadRequestObjectResult(
                     context.ModelState.ToDictionary(
                         kvp => kvp.Key,
-                        kvp => kvp.Value.Errors
+                        kvp => kvp.Value?.Errors
                             .Select(e => e.ErrorMessage)
                             .ToArray()));
             }

@@ -2,6 +2,6 @@
 {
     public interface ICheckoutService
     {
-        Task<decimal> GetTotalPriceAsync(List<string> SKUs);
+        Task<decimal> GetTotalPriceAsync(List<string> skus);
     }
 }

@@ -13,14 +13,14 @@ namespace SupermarketCheckout.Application.Services
                 ?? throw new ArgumentNullException(nameof(itemCatalogRepository));
         }
 
-        public async Task<decimal> GetTotalPriceAsync(List<string> SKUs)
+        public async Task<decimal> GetTotalPriceAsync(List<string> skus)
         {
-            if (SKUs == null)
+            if (skus == null)
             {
-                throw new ArgumentNullException(nameof(SKUs));
+                throw new ArgumentNullException(nameof(skus));
             }
 
-            var basket = new Basket(SKUs);
+            var basket = new Basket(skus);
             return await basket.GetTotalPriceAsync(_itemCatalogRepository);
         }
     }

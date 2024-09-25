@@ -10,26 +10,31 @@ namespace SupermarketCheckout.Repositories.Ef.Tests
         [TestMethod]
         public void EnsureSupermarketContextIsProvidedToConstructor()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new ItemCatalogRepository(null));
+            Assert.ThrowsException<ArgumentNullException>(() => new ItemCatalogRepository(null, new OfferFactory()));
         }
 
         [TestMethod]
-        public async Task EnsureSKUIsNotEmptyInGetBasketItemPriceBySKUAsync()
+        public async Task EnsureSkuIsNotEmptyInGetBasketItemPriceBySKUAsync()
         {
             var repo = GetItemCatalogRepository();
 
             await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() =>
-                repo.GetBasketItemPriceBySKUAsync(" "));
+                repo.GetBasketItemPriceBySkuAsync(" "));
         }
 
         private ItemCatalogRepository GetItemCatalogRepository()
         {
-            return new ItemCatalogRepository(GetSupermarketContext());
+            return new ItemCatalogRepository(GetSupermarketContext(), GetOfferFactory());
         }
 
         private SupermarketContext GetSupermarketContext()
         {
             return new SupermarketContext(new DbContextOptions<SupermarketContext>());
+        }
+
+        private IOfferFactory GetOfferFactory()
+        {
+            return new OfferFactory();
         }
     }
 }

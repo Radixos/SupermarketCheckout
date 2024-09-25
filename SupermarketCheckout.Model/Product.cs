@@ -4,7 +4,7 @@ namespace SupermarketCheckout.Model
 {
     public class Product
     {
-        public string SKU { get; set; }
+        public string Sku { get; set; }
         public decimal Price { get; set; }
         public string? OfferType { get; set; }
 
@@ -20,7 +20,7 @@ namespace SupermarketCheckout.Model
                 throw new ArgumentOutOfRangeException(nameof(price));
             }
 
-            SKU = sku;
+            Sku = sku;
             Price = price;
             OfferType = offerType;
         }
@@ -32,7 +32,7 @@ namespace SupermarketCheckout.Model
                 throw new ArgumentNullException(nameof(productRepository));
             }
 
-            return await productRepository.GetProductAsync(SKU);
+            return await productRepository.GetProductAsync(Sku);
         }
 
         public async Task AddProductAsync(IProductRepository productRepository)
@@ -42,7 +42,7 @@ namespace SupermarketCheckout.Model
                 throw new ArgumentNullException(nameof(productRepository));
             }
 
-            await productRepository.AddProductAsync(SKU, Price, OfferType);
+            await productRepository.AddProductAsync(Sku, Price, OfferType);
         }
     }
 }

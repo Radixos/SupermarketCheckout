@@ -5,7 +5,7 @@ namespace SupermarketCheckout.Application.Services
 {
     public interface IProductService
     {
-        Task<Product> GetProductAsync(string SKU);
+        Task<ProductDto> GetProductAsync(string sku);
         Task AddProductAsync(ProductDto productDto);
     }
 }

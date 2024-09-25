@@ -1,7 +1,7 @@
-﻿namespace SupermarketCheckoutAPI.DTOs
+﻿namespace SupermarketCheckout.API.DTOs
 {
     public class CheckoutRequest
     {
-        public List<string> SKUs { get; set; }
+        public List<string> Skus { get; set; }
     }
 }

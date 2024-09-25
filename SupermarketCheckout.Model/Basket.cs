@@ -6,21 +6,21 @@ namespace SupermarketCheckout.Model
     {
         private List<BasketItem> _basketItems { get; }
 
-        public Basket(List<string> SKUs)
+        public Basket(List<string> skus)
         {
-            if (SKUs == null)
+            if (skus == null)
             {
-                throw new ArgumentNullException(nameof(SKUs));
+                throw new ArgumentNullException(nameof(skus));
             }
 
-            if (SKUs.Count < 1)
+            if (skus.Count < 1)
             {
-                throw new ArgumentException("Cannot be null or white space", nameof(SKUs));
+                throw new ArgumentException("Cannot be null or white space", nameof(skus));
             }
 
             var itemsList = new Dictionary<string, int>();
 
-            foreach (var sku in SKUs)
+            foreach (var sku in skus)
             {
                 if (!itemsList.ContainsKey(sku))
                 {

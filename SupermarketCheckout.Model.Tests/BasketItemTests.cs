@@ -7,7 +7,7 @@ namespace SupermarketCheckout.Model.Tests
     public class BasketItemTests
     {
         [TestMethod]
-        public void EnsureSKUsIsNotEmptyInTheConstructor()
+        public void EnsureSkusIsNotEmptyInTheConstructor()
         {
             Assert.ThrowsException<ArgumentException>(() =>
                 new BasketItem("", 1));
@@ -37,13 +37,13 @@ namespace SupermarketCheckout.Model.Tests
             var repoMock = new Mock<IItemCatalogRepository>();
             repoMock
                 .Setup(m =>
-                    m.GetBasketItemPriceBySKUAsync(It.IsAny<string>()))
+                    m.GetBasketItemPriceBySkuAsync(It.IsAny<string>()))
                 .ReturnsAsync(new BasketItemPrice(50, null));
 
             await basketItem.GetTotalPriceAsync(repoMock.Object);
 
             repoMock.Verify(m =>
-                m.GetBasketItemPriceBySKUAsync(It.IsAny<string>()), Times.Once);
+                m.GetBasketItemPriceBySkuAsync(It.IsAny<string>()), Times.Once);
         }
 
         private BasketItem GetBasketItem()

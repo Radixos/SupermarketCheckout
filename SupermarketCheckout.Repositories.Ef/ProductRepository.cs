@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SupermarketCheckout.Model;
+using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 using SupermarketCheckout.Repositories.Ef.Entities;
 
@@ -25,19 +26,18 @@ namespace SupermarketCheckout.Repositories.Ef
             var product = await _context.BasketItem
                 .Select(basketItem => new
                 {
-                    basketItem.SKU,
+                    basketItem.Sku,
                     basketItem.Price,
                     OfferType = basketItem.Offer != null ? basketItem.Offer.OfferType : null
                 })
-                .FirstOrDefaultAsync(p => p.SKU == sku);
+                .FirstOrDefaultAsync(p => p.Sku == sku);
 
             if (product == null)
             {
-                //throw new NotFoundException($"Product with SKU '{sku}' doesn't exists.");
-                throw new Exception($"Product with SKU '{sku}' doesn't exists.");
+                throw new NotFoundException($"Product with Sku '{sku}' doesn't exists.");
             }
 
-            return new Product(product.SKU, product.Price, product.OfferType);
+            return new Product(product.Sku, product.Price, product.OfferType);
         }
 
         public async Task AddProductAsync(string sku, decimal price, string? offerType = null)  //pass in a new model, do the validation for existing obj there
@@ -61,7 +61,7 @@ namespace SupermarketCheckout.Repositories.Ef
 
             var newProduct = new BasketItemEntity   //TODO: Change the BasketItem table name to Product
             {
-                SKU = sku,
+                Sku = sku,
                 Price = price,
                 OfferId = offerEntity?.OfferId,
                 Offer = offerEntity

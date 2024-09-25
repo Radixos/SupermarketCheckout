@@ -4,7 +4,7 @@ namespace SupermarketCheckout.Model
 {
     public class BasketItem
     {
-        public string SKU { get; }
+        public string Sku { get; }
         public int Quantity { get; }
 
         public BasketItem(string sku, int quantity)
@@ -19,7 +19,7 @@ namespace SupermarketCheckout.Model
                 throw new ArgumentOutOfRangeException(nameof(quantity));
             }
 
-            SKU = sku;
+            Sku = sku;
             Quantity = quantity;
         }
 
@@ -30,7 +30,7 @@ namespace SupermarketCheckout.Model
                 throw new ArgumentNullException(nameof(itemCatalogRepository));
             }
 
-            var itemPrice = await itemCatalogRepository.GetBasketItemPriceBySKUAsync(SKU);
+            var itemPrice = await itemCatalogRepository.GetBasketItemPriceBySkuAsync(Sku);
 
             if (itemPrice == null)
             {
