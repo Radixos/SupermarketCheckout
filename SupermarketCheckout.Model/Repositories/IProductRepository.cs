@@ -5,5 +5,7 @@
         Task<Product> GetProductAsync(string sku);
         Task AddProductAsync(string sku, decimal price, string? offerType);
         Task DeleteProductAsync(string sku);
+        Task<decimal> GetProductPriceAsync(string sku);
+        Task UpdatePriceAsync(string sku, decimal newPrice);
     }
 }

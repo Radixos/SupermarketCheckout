@@ -26,13 +26,15 @@ namespace SupermarketCheckout.API.Controllers
         {
             try
             {
-                var response = await _productService.GetProductAsync(sku);  //TODO: have product in dto on app and map to product on application DOUBLE CHECK???
+                var product = await _productService.GetProductAsync(sku);  //TODO: have product in dto on app and map to product on application DOUBLE CHECK???
+
+                var response = ProductMapper.MapToProduct(product);
 
                 return Ok(response);
             }
             catch (Exception ex)
                 when (ex is ArgumentException
-                      || ex is NotFoundException)
+                      or NotFoundException)
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
@@ -50,13 +52,14 @@ namespace SupermarketCheckout.API.Controllers
             try
             {
                 await _productService.AddProductAsync(ProductMapper.MapToProductDto(product));
+
                 string? uri = Url.Action("Get", "Products", new { product.Sku });
 
                 return Created(uri, product.Sku);
             }
             catch (Exception ex)
                 when (ex is ArgumentException
-                      || ex is InvalidOperationException)
+                      or InvalidOperationException)
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
@@ -69,15 +72,19 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteAsync(string sku) //TODO: Finish a method to delete a product
+        public async Task<ActionResult> DeleteAsync(string sku)
         {
             try
             {
                 await _productService.DeleteProductAsync(sku);
+
+                string? uri = Url.Action("Delete", "Products", new { sku });
+
+                return Accepted(uri, sku);
             }
             catch (Exception ex)
                 when (ex is ArgumentException
-                      || ex is NotFoundException)
+                      or NotFoundException)
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
@@ -87,8 +94,6 @@ namespace SupermarketCheckout.API.Controllers
                 Console.WriteLine(ex.Message);
                 return StatusCode(500, "Internal server error occured.");
             }
-
-            return Accepted();
         }
     }
 }

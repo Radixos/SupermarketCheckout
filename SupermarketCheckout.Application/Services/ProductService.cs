@@ -47,5 +47,30 @@ namespace SupermarketCheckout.Application.Services
 
             await _productRepository.DeleteProductAsync(sku);
         }
+
+        public async Task<decimal> GetProductPriceAsync(string sku)
+        {
+            if (string.IsNullOrWhiteSpace(sku))
+            {
+                throw new ArgumentNullException(nameof(sku));
+            }
+
+            return await _productRepository.GetProductPriceAsync(sku);
+        }
+
+        public async Task UpdatePriceAsync(string sku, decimal newPrice)
+        {
+            if (string.IsNullOrWhiteSpace(sku))
+            {
+                throw new ArgumentNullException(nameof(sku));
+            }
+
+            if (newPrice < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(newPrice));
+            }
+
+            await _productRepository.UpdatePriceAsync(sku, newPrice);
+        }
     }
 }
