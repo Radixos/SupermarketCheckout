@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace SupermarketCheckout.Repositories.Ef.Entities
 {
-    public sealed class BasketItemEntityConfig : IEntityTypeConfiguration<BasketItemEntity>
+    public sealed class ProductEntityConfig : IEntityTypeConfiguration<ProductEntity>
     {
-        public void Configure(EntityTypeBuilder<BasketItemEntity> builder)
+        public void Configure(EntityTypeBuilder<ProductEntity> builder)
         {
             builder.HasKey(e => e.Sku);
 

@@ -30,7 +30,7 @@
                 throw new ArgumentOutOfRangeException(nameof(skuQuantity));
             }
 
-            if (HasOffer)
+            if (HasOffer && Offer != null)
             {
                 return Offer.CalculateOfferPrice(skuQuantity, UnitPrice);
             }

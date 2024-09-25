@@ -8,6 +8,6 @@ namespace SupermarketCheckout.Repositories.Ef.Entities
         public string OfferType { get; set; }
         public int? OfferQuantity { get; set; }
         public decimal? OfferPrice { get; set; }
-        public IList<BasketItemEntity> BasketItems { get; set; }
+        public IList<ProductEntity> BasketItems { get; set; }
     }
 }

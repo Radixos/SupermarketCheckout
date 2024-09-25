@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SupermarketCheckout.Application.Services;
 using SupermarketCheckout.API.DTOs;
 using SupermarketCheckout.API.Filters;
+using SupermarketCheckout.Model.Exceptions;
 
 namespace SupermarketCheckout.API.Controllers
 {
@@ -32,7 +33,9 @@ namespace SupermarketCheckout.API.Controllers
 
                 return Ok(response);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
+                when (ex is ArgumentException
+                      || ex is NotFoundException) 
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);

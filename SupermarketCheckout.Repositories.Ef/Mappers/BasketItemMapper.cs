@@ -5,7 +5,7 @@ namespace SupermarketCheckout.Repositories.Ef.Mappers
 {
     internal static class BasketItemMapper
     {
-        public static BasketItemPrice MapToBasketItemPrice(BasketItemEntity entity, IOfferFactory offerFactory)
+        public static BasketItemPrice MapToBasketItemPrice(ProductEntity entity, IOfferFactory offerFactory)
         {
             if (entity == null)
             {

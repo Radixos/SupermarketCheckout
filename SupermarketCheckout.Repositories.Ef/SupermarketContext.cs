@@ -11,12 +11,12 @@ namespace SupermarketCheckout.Repositories.Ef
 
         }
 
-        public DbSet<BasketItemEntity> BasketItem { get; set; }
+        public DbSet<ProductEntity> Product { get; set; }
         public DbSet<OfferEntity> Offer { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new BasketItemEntityConfig());
+            modelBuilder.ApplyConfiguration(new ProductEntityConfig());
             modelBuilder.ApplyConfiguration(new OfferEntityConfig());
         }
     }

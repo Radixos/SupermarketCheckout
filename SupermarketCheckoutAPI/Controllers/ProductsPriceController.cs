@@ -22,7 +22,8 @@ namespace SupermarketCheckout.API.Controllers
                 throw new NotImplementedException();
                 return Accepted();
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
+                when (ex is ArgumentException)
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);

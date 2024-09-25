@@ -25,7 +25,7 @@ namespace SupermarketCheckout.Model.Tests
         {
             var basket = GetBasketItem();
 
-            Assert.ThrowsExceptionAsync<ArgumentNullException>(async () =>
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(async () =>
                 await basket.GetTotalPriceAsync(null));
         }
 

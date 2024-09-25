@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SupermarketCheckout.Model;
+using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 using SupermarketCheckout.Repositories.Ef.Mappers;
 
@@ -25,9 +26,14 @@ namespace SupermarketCheckout.Repositories.Ef
                 throw new ArgumentOutOfRangeException(nameof(sku));
             }
 
-            var basketItem = await _context.BasketItem
+            var basketItem = await _context.Product
                 .Include(basketItems => basketItems.Offer)
                 .FirstOrDefaultAsync(basketItem => basketItem.Sku == sku);
+
+            if (basketItem == null)
+            {
+                throw new NotFoundException(nameof(basketItem));
+            }
 
             return BasketItemMapper.MapToBasketItemPrice(basketItem, _offerFactory);
         }

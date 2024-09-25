@@ -23,12 +23,12 @@ namespace SupermarketCheckout.Repositories.Ef
                 throw new ArgumentException("Cannot be null or white space", nameof(sku));
             }
 
-            var product = await _context.BasketItem
-                .Select(basketItem => new
+            var product = await _context.Product
+                .Select(product => new
                 {
-                    basketItem.Sku,
-                    basketItem.Price,
-                    OfferType = basketItem.Offer != null ? basketItem.Offer.OfferType : null
+                    product.Sku,
+                    product.Price,
+                    OfferType = product.Offer != null ? product.Offer.OfferType : null
                 })
                 .FirstOrDefaultAsync(p => p.Sku == sku);
 
@@ -52,6 +52,13 @@ namespace SupermarketCheckout.Repositories.Ef
                 throw new ArgumentOutOfRangeException(nameof(price));
             }
 
+            var product = await _context.Product.FirstOrDefaultAsync(p => p.Sku == sku);
+
+            if (product != null)
+            {
+                throw new InvalidOperationException(nameof(product));
+            }
+
             OfferEntity? offerEntity = null;
 
             if (!string.IsNullOrWhiteSpace(offerType))
@@ -59,7 +66,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 offerEntity = await _context.Offer.FirstOrDefaultAsync(o => o.OfferType == offerType);
             }
 
-            var newProduct = new BasketItemEntity   //TODO: Change the BasketItem table name to Product
+            var newProduct = new ProductEntity
             {
                 Sku = sku,
                 Price = price,
@@ -67,7 +74,25 @@ namespace SupermarketCheckout.Repositories.Ef
                 Offer = offerEntity
             };
 
-            _context.BasketItem.Add(newProduct);
+            _context.Product.Add(newProduct);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteProductAsync(string sku)
+        {
+            if (string.IsNullOrWhiteSpace(sku))
+            {
+                throw new ArgumentNullException(nameof(sku));
+            }
+
+            var product = await _context.Product.FirstOrDefaultAsync(p => p.Sku == sku);
+
+            if (product == null)
+            {
+                throw new NotFoundException(nameof(product));
+            }
+
+            _context.Product.Remove(product);
             await _context.SaveChangesAsync();
         }
     }

@@ -5,7 +5,7 @@ using SupermarketCheckout.API.DTOs;
 using SupermarketCheckout.API.Filters;
 using SupermarketCheckout.API.Mappers;
 
-//TODO: Add relevant tests for all this and deeper
+//TODO: Add relevant tests for all of this and deeper
 
 namespace SupermarketCheckout.API.Controllers
 {
@@ -26,19 +26,16 @@ namespace SupermarketCheckout.API.Controllers
         {
             try
             {
-                var response = await _productService.GetProductAsync(sku);  //TODO: have product in dto on app and map to product on application
+                var response = await _productService.GetProductAsync(sku);  //TODO: have product in dto on app and map to product on application DOUBLE CHECK???
 
                 return Ok(response);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
+                when (ex is ArgumentException
+                      || ex is NotFoundException)
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
-            }
-            catch (NotFoundException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return NotFound();
             }
             catch (Exception ex)
             {
@@ -57,7 +54,9 @@ namespace SupermarketCheckout.API.Controllers
 
                 return Created(uri, product.Sku);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
+                when (ex is ArgumentException
+                      || ex is InvalidOperationException)
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
@@ -72,9 +71,24 @@ namespace SupermarketCheckout.API.Controllers
         [HttpDelete]
         public async Task<ActionResult> DeleteAsync(string sku) //TODO: Finish a method to delete a product
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _productService.DeleteProductAsync(sku);
+            }
+            catch (Exception ex)
+                when (ex is ArgumentException
+                      || ex is NotFoundException)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "Internal server error occured.");
+            }
 
-            return Ok();
+            return Accepted();
         }
     }
 }

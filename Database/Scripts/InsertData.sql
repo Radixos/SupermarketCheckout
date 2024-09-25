@@ -1,4 +1,4 @@
-﻿INSERT INTO dbo.BasketItem (SKU, Price, OfferId)
+﻿INSERT INTO dbo.Product (SKU, Price, OfferId)
 VALUES
 ('A', 50, 1),
 ('B', 30, 2),

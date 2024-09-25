@@ -61,7 +61,7 @@
     <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\dbo\BasketItem.sql" />
+    <Build Include="Tables\dbo\Product.sql" />
     <Build Include="Tables\dbo\Offer.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
 ﻿using SupermarketCheckout.Application.DTOs;
-using SupermarketCheckout.Model;
 
 namespace SupermarketCheckout.Application.Services
 {
@@ -7,5 +6,6 @@ namespace SupermarketCheckout.Application.Services
     {
         Task<ProductDto> GetProductAsync(string sku);
         Task AddProductAsync(ProductDto productDto);
+        Task DeleteProductAsync(string sku);
     }
 }
