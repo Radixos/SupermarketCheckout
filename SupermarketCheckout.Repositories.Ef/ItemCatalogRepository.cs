@@ -23,7 +23,7 @@ namespace SupermarketCheckout.Repositories.Ef
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentOutOfRangeException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             var basketItem = await _context.Product

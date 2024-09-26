@@ -1,6 +1,0 @@
-@SupermarketCheckoutAPI_HostAddress = http://localhost:5117
-
-GET {{SupermarketCheckoutAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

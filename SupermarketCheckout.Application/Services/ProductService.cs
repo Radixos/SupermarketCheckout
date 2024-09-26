@@ -42,17 +42,17 @@ namespace SupermarketCheckout.Application.Services
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
-            await _productRepository.DeleteProductAsync(sku);
+            await _productRepository.DeleteProductAsync(sku);   //TODO ASK: When should I call repo from the app layer and when model?
         }
 
         public async Task<decimal> GetProductPriceAsync(string sku)
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             return await _productRepository.GetProductPriceAsync(sku);
@@ -62,7 +62,7 @@ namespace SupermarketCheckout.Application.Services
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             if (newPrice < 0)

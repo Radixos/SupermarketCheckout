@@ -4,19 +4,23 @@
     {
         public Offer CreateOffer(string offerType, int offerQuantity, decimal offerPrice)   //TODO: write tests (offer type "MultiBuy", test lower case letters)
         {
-            if (string.IsNullOrWhiteSpace(offerType)) {
+            if (string.IsNullOrWhiteSpace(offerType))
+            {
                 throw new ArgumentException("Cannot be null or white space", nameof(offerType));
             }
 
-            if (offerQuantity <= 0) {
+            if (offerQuantity <= 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(offerQuantity));
             }
 
-            if (offerPrice < 0) {
+            if (offerPrice < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(offerPrice));
             }
 
-            switch (offerType) {
+            switch (offerType)
+            {
                 case "MultiBuy":
                     return new MultiBuyOffer(offerQuantity, offerPrice);
                 default:

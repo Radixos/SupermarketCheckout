@@ -82,7 +82,7 @@ namespace SupermarketCheckout.Repositories.Ef
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             var product = await _context.Product.FirstOrDefaultAsync(p => p.Sku == sku);
@@ -100,7 +100,7 @@ namespace SupermarketCheckout.Repositories.Ef
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             var product = await _context.Product
@@ -118,7 +118,7 @@ namespace SupermarketCheckout.Repositories.Ef
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             if (newPrice < 0)

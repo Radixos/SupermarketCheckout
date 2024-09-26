@@ -19,8 +19,10 @@ builder.Services.AddDbContext<SupermarketContext>(options =>
 builder.Services
     .AddScoped<ICheckoutService, CheckoutService>()
     .AddScoped<IProductService, ProductService>()
+    .AddScoped<IOfferService, OfferService>()
     .AddScoped<IItemCatalogRepository, ItemCatalogRepository>()
     .AddScoped<IProductRepository, ProductRepository>()
+    .AddScoped<IOfferRepository, OfferRepository>()
     .AddSingleton<IOfferFactory, OfferFactory>();
 
 var app = builder.Build();
