@@ -14,11 +14,20 @@ namespace SupermarketCheckout.Repositories.Ef.Tests
         }
 
         [TestMethod]
-        public async Task EnsureSkuIsNotEmptyInGetBasketItemPriceBySKUAsync()
+        public async Task GetBasketItemPriceBySkuAsync_ThrowsArgumentException_WhenSkuIsNull()
         {
             var repo = GetItemCatalogRepository();
 
-            await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() =>
+            await Assert.ThrowsExceptionAsync<ArgumentException>(() =>
+                repo.GetBasketItemPriceBySkuAsync(null));
+        }
+
+        [TestMethod]
+        public async Task GetBasketItemPriceBySkuAsync_ThrowsArgumentException_WhenSkuIsWhiteSpace()
+        {
+            var repo = GetItemCatalogRepository();
+
+            await Assert.ThrowsExceptionAsync<ArgumentException>(() =>
                 repo.GetBasketItemPriceBySkuAsync(" "));
         }
 

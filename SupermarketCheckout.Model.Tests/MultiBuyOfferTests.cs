@@ -4,7 +4,7 @@
     public class MultiBuyOfferTests
     {
         [TestMethod]
-        public void EnsureSkuQuantityIsMoreThanZeroInCalculateOfferPrice()
+        public void CalculateOfferPrice_ThrowsArgumentOutOfRangeException_WhenSkuQuantityIsZeroOrLess()
         {
             var multiBuyOffer = GetMultiBuyOffer();
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
@@ -12,7 +12,7 @@
         }
 
         [TestMethod]
-        public void EnsureUnitPriceIsNotNegativeInCalculateOfferPrice()
+        public void CalculateOfferPrice_ThrowsArgumentOutOfRangeException_WhenUnitPriceIsLessThanZero()
         {
             var multiBuyOffer = GetMultiBuyOffer();
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>

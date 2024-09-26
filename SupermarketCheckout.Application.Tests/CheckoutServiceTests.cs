@@ -1,7 +1,5 @@
-using Castle.DynamicProxy.Internal;
 using Moq;
 using SupermarketCheckout.Application.Services;
-using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Repositories;
 
 namespace SupermarketCheckout.Application.Tests
@@ -16,14 +14,14 @@ namespace SupermarketCheckout.Application.Tests
         }
 
         [TestMethod]
-        public async Task EnsureGetTotalPriceAsyncThrowsWhenSkusIsNullAsync()
+        public async Task GetTotalPriceAsync_ThrowsArgumentNullException_WhenSkusIsNull_Async()
         {
             var service = GetCheckoutService();
             await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => service.GetTotalPriceAsync(null));
         }
 
         [TestMethod]
-        public async Task EnsureGetTotalPriceAsyncThrowsWhenSkusIsEmptyAsync()
+        public async Task GetTotalPriceAsync_ThrowsArgumentException_WhenSkusIsEmpty_Async()
         {
             var service = GetCheckoutService();
             await Assert.ThrowsExceptionAsync<ArgumentException>(() => service.GetTotalPriceAsync(new List<string>()));

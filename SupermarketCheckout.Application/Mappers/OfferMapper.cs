@@ -7,6 +7,11 @@ namespace SupermarketCheckout.Application.Mappers
     {
         public static OfferDto MapToOfferDto(Offer offer)
         {
+            if (offer == null)
+            {
+                throw new ArgumentNullException(nameof(offer));
+            }
+
             return new OfferDto
             {
                 OfferQuantity = offer.OfferQuantity,

@@ -21,7 +21,7 @@ namespace SupermarketCheckout.Model.Tests
         }
 
         [TestMethod]
-        public async Task EnsureItemCatalogRepositoryIsProvidedToGetTotalPriceAsync()
+        public async Task GetTotalPriceAsync_ThrowsArgumentNullException_WhenRepositoryIsNotSupplied_Async()
         {
             var basket = GetBasketItem();
 

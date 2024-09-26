@@ -11,21 +11,21 @@
         }
 
         [TestMethod]
-        public void EnsureHasOfferReturnsFalseIfNoOffer()
+        public void HasOffer_ReturnsFalse_WhenNoOfferIsProvided()
         {
             var basketItemPrice = new BasketItemPrice(50, null);
             Assert.AreEqual(false, basketItemPrice.HasOffer);
         }
 
         [TestMethod]
-        public void EnsureHasOfferCanReturnsTrueIfOffer()
+        public void HasOffer_ReturnsTrue_WhenOfferIsSupplied()
         {
             var basketItemPrice = GetBasketItemPriceWithOffer();
             Assert.AreEqual(true, basketItemPrice.HasOffer);
         }
 
         [TestMethod]
-        public void EnsureSkuQuantityIsProvidedToCalculateTotalBasketItemPrice()
+        public void CalculateTotalBasketItemPrice_ThrowsArgumentOutOfRangeException_WhenSkuQuantityIsZero()
         {
             var basketItemPrice = GetBasketItemPriceWithOffer();
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
@@ -33,14 +33,14 @@
         }
 
         [TestMethod]
-        public void EnsureCalculateTotalBasketItemPriceDoesntReturnOfferPriceIfHasOfferIsTrue()
+        public void CalculateTotalBasketItemPrice_DoesntReturnReturnOfferPrice_WhenHasOfferIsTrue()
         {
             var basketItemPrice = new BasketItemPrice(50, null);
             Assert.AreEqual(100, basketItemPrice.CalculateTotalBasketItemPrice(2)); //2*50
         }
 
         [TestMethod]
-        public void EnsureCalculateTotalBasketItemPriceReturnsOfferPriceIfHasOfferIsFalse()
+        public void CalculateTotalBasketItemPrice_ReturnsOfferPrice_WhenHasOfferIsFalse()
         {
             var basketItemPrice = GetBasketItemPriceWithOffer();
             Assert.AreEqual(130, basketItemPrice.CalculateTotalBasketItemPrice(3)); //130
