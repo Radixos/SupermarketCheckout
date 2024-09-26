@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using SupermarketCheckout.API.Filters;
+using SupermarketCheckout.API.Mappers;
 using SupermarketCheckout.Application.Services;
 using SupermarketCheckout.Model.Exceptions;
 
@@ -11,11 +12,11 @@ namespace SupermarketCheckout.API.Controllers
     [ModelStateErrorRequestFilter]
     public class ProductPriceController : Controller
     {
-        private readonly IProductService _productService;
+        private readonly IProductPriceService _productPriceService;
 
-        public ProductPriceController(IProductService productService)
+        public ProductPriceController(IProductPriceService productService)
         {
-            _productService = productService
+            _productPriceService = productService
                 ?? throw new ArgumentNullException(nameof(productService));
         }
 
@@ -24,9 +25,9 @@ namespace SupermarketCheckout.API.Controllers
         {
             try
             {
-                var price = await _productService.GetProductPriceAsync(sku);
+                var price = await _productPriceService.GetProductPriceAsync(sku);
 
-                var response = price;   //TODO: Create an object and return it, also in other controllers too
+                var response = ProductPriceMapper.MapToProductPriceResponse(price);
 
                 return Ok(response);
             }
@@ -49,7 +50,7 @@ namespace SupermarketCheckout.API.Controllers
         {
             try
             {
-                await _productService.UpdatePriceAsync(sku, newPrice);
+                await _productPriceService.UpdatePriceAsync(sku, newPrice);
 
                 string? uri = Url.Action("Get", "Products", new { newPrice });
 

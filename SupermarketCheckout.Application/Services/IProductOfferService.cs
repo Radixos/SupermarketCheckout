@@ -4,6 +4,6 @@ namespace SupermarketCheckout.Application.Services
 {
     public interface IProductOfferService
     {
-        Task<OfferDto> GetOfferAsync(string offerType);
+        Task<OfferDto> GetOfferAsync(string sku, string offerType);
     }
 }

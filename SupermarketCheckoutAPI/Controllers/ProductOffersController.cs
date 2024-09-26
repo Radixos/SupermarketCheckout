@@ -14,18 +14,18 @@ namespace SupermarketCheckout.API.Controllers
     {
         private readonly IProductOfferService _productOfferService;
 
-        public ProductOffersController(IProductOfferService productOfferService) //What else to rename, change?
+        public ProductOffersController(IProductOfferService productOfferService)
         {
             _productOfferService = productOfferService
                 ?? throw new ArgumentNullException(nameof(productOfferService));
         }
 
         [HttpGet("{offerType}")]
-        public async Task<ActionResult<Offer>> GetAsync(string sku, string offerType)   //TODO: finish
+        public async Task<ActionResult<Offer>> GetAsync(string sku, string offerType)
         {
             try
             {
-                var offer = await _productOfferService.GetOfferAsync(offerType);
+                var offer = await _productOfferService.GetOfferAsync(sku, offerType);
 
                 var response = OfferMapper.MapToOffer(offer);
 

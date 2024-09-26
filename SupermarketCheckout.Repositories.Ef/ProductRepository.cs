@@ -40,36 +40,36 @@ namespace SupermarketCheckout.Repositories.Ef
             return new Product(product.Sku, product.Price, product.OfferType);
         }
 
-        public async Task AddProductAsync(string sku, decimal price, string? offerType = null)  //pass in a new model, do the validation for existing obj there
+        public async Task AddProductAsync(Product product)  //pass in a new model, do the validation for existing obj there
         {
-            if (string.IsNullOrWhiteSpace(sku))
+            if (string.IsNullOrWhiteSpace(product.Sku))
             {
-                throw new ArgumentException("Cannot be null or white space", nameof(sku));
+                throw new ArgumentException("Cannot be null or white space", nameof(product.Sku));
             }
 
-            if (price < 0)
+            if (product.Price < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(price));
+                throw new ArgumentOutOfRangeException(nameof(product.Price));
             }
 
-            var product = await _context.Product.FirstOrDefaultAsync(p => p.Sku == sku);
+            var existingProduct = await _context.Product.FirstOrDefaultAsync(p => p.Sku == product.Sku);
 
-            if (product != null)
+            if (existingProduct != null)
             {
-                throw new InvalidOperationException(nameof(product));
+                throw new InvalidOperationException(nameof(existingProduct));
             }
 
             OfferEntity? offerEntity = null;
 
-            if (!string.IsNullOrWhiteSpace(offerType))
+            if (!string.IsNullOrWhiteSpace(product.OfferType))
             {
-                offerEntity = await _context.Offer.FirstOrDefaultAsync(o => o.OfferType == offerType);
+                offerEntity = await _context.Offer.FirstOrDefaultAsync(o => o.OfferType == product.OfferType);
             }
 
             var newProduct = new ProductEntity
             {
-                Sku = sku,
-                Price = price,
+                Sku = product.Sku,
+                Price = product.Price,
                 OfferId = offerEntity?.OfferId,
                 Offer = offerEntity
             };
@@ -93,53 +93,6 @@ namespace SupermarketCheckout.Repositories.Ef
             }
 
             _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<decimal> GetProductPriceAsync(string sku)
-        {
-            if (string.IsNullOrWhiteSpace(sku))
-            {
-                throw new ArgumentException(nameof(sku));
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(p => p.Sku == sku);
-
-            if (product == null)
-            {
-                throw new NotFoundException(nameof(product));
-            }
-
-            return product.Price;
-        }
-
-        public async Task UpdatePriceAsync(string sku, decimal newPrice)
-        {
-            if (string.IsNullOrWhiteSpace(sku))
-            {
-                throw new ArgumentException(nameof(sku));
-            }
-
-            if (newPrice < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(newPrice));
-            }
-
-            var product = await _context.Product.FirstOrDefaultAsync(p => p.Sku == sku);
-
-            if (product == null)
-            {
-                throw new NotFoundException(nameof(product));
-            }
-
-            if (product.Price == newPrice)
-            {
-                throw new ArgumentException($"Price is already set to {newPrice}");
-            }
-
-            product.Price = newPrice;
-
             await _context.SaveChangesAsync();
         }
     }

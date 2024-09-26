@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SupermarketCheckout.Application.Services;
 using SupermarketCheckout.API.DTOs;
 using SupermarketCheckout.API.Filters;
+using SupermarketCheckout.API.Mappers;
 using SupermarketCheckout.Model.Exceptions;
 
 namespace SupermarketCheckout.API.Controllers
@@ -27,10 +28,7 @@ namespace SupermarketCheckout.API.Controllers
             {
                 var totalPrice = await _checkoutService.GetTotalPriceAsync(request.Skus);
 
-                var response = new CheckoutResponse //TODO: use a mapper
-                {
-                    TotalPrice = totalPrice
-                };
+                var response = CheckoutResponseMapper.MapToCheckoutResponse(totalPrice);
 
                 return Ok(response);
             }

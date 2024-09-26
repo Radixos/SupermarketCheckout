@@ -7,7 +7,5 @@ namespace SupermarketCheckout.Application.Services
         Task<ProductDto> GetProductAsync(string sku);
         Task AddProductAsync(ProductDto productDto);
         Task DeleteProductAsync(string sku);
-        Task<decimal> GetProductPriceAsync(string sku);
-        Task UpdatePriceAsync(string sku, decimal newPrice);
     }
 }

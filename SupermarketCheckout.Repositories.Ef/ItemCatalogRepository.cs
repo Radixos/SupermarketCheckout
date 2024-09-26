@@ -19,7 +19,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 ?? throw new ArgumentNullException(nameof(offerFactory));
         }
 
-        public async Task<BasketItemPrice> GetBasketItemPriceBySkuAsync(string sku)
+        public async Task<BasketItemPrice?> GetBasketItemPriceBySkuAsync(string sku)
         {
             if (string.IsNullOrWhiteSpace(sku))
             {

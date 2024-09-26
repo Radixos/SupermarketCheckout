@@ -20,8 +20,10 @@ builder.Services
     .AddScoped<ICheckoutService, CheckoutService>()
     .AddScoped<IProductService, ProductService>()
     .AddScoped<IProductOfferService, ProductOfferService>()
+    .AddScoped<IProductPriceService, ProductPriceService>()
     .AddScoped<IItemCatalogRepository, ItemCatalogRepository>()
     .AddScoped<IProductRepository, ProductRepository>()
+    .AddScoped<IProductPriceRepository, ProductPriceRepository>()
     .AddScoped<IOfferRepository, OfferRepository>()
     .AddSingleton<IOfferFactory, OfferFactory>();
 

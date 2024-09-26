@@ -14,14 +14,19 @@ namespace SupermarketCheckout.Application.Services
                 ?? throw new ArgumentNullException(nameof(offerRepository));
         }
 
-        public async Task<OfferDto> GetOfferAsync(string offerType)
+        public async Task<OfferDto> GetOfferAsync(string sku, string offerType)
         {
+            if (string.IsNullOrWhiteSpace(sku))
+            {
+                throw new ArgumentNullException(nameof(sku));
+            }
+
             if (string.IsNullOrWhiteSpace(offerType))
             {
                 throw new ArgumentException(nameof(offerType));
             }
 
-            var offer = await _offerRepository.GetOfferAsync(offerType);
+            var offer = await _offerRepository.GetOfferAsync(sku, offerType);
 
             return OfferMapper.MapToOfferDto(offer);
         }

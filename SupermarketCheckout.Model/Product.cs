@@ -34,15 +34,5 @@ namespace SupermarketCheckout.Model
 
             return await productRepository.GetProductAsync(Sku);
         }
-
-        public async Task AddProductAsync(IProductRepository productRepository)
-        {
-            if (productRepository == null)
-            {
-                throw new ArgumentNullException(nameof(productRepository));
-            }
-
-            await productRepository.AddProductAsync(Sku, Price, OfferType);
-        }
     }
 }
