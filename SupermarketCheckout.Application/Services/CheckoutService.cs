@@ -21,7 +21,7 @@ namespace SupermarketCheckout.Application.Services
             }
 
             var basket = new Basket(skus);
-            return await basket.GetTotalPriceAsync(_itemCatalogRepository);
+            return await basket.GetTotalPriceAsync(_itemCatalogRepository); //TODO: can do pass repo in the basket constructor
         }
     }
 }

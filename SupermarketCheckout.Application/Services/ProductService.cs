@@ -34,8 +34,9 @@ namespace SupermarketCheckout.Application.Services
                 throw new ArgumentNullException(nameof(productDto));
             }
 
-            var product = new Product(productDto.Sku, productDto.Price, productDto.OfferType ?? null);  //TODO ASK: Is this the right way? At what point should I break the object down?
-            await product.AddProductAsync(_productRepository);
+            var product = new Product(productDto.Sku, productDto.Price, productDto.OfferType ?? null);
+
+            await _productRepository.AddProductAsync(product);  //TODO: finish
         }
 
         public async Task DeleteProductAsync(string sku)
@@ -45,17 +46,21 @@ namespace SupermarketCheckout.Application.Services
                 throw new ArgumentException(nameof(sku));
             }
 
-            await _productRepository.DeleteProductAsync(sku);   //TODO ASK: When should I call repo from the app layer and when model?
+            //get product
+            //mark product as deleted (done by domain model)
+            //save the domain model
+
+            await _productRepository.DeleteProductAsync(sku);
         }
 
-        public async Task<decimal> GetProductPriceAsync(string sku)
+        public async Task<decimal> GetProductPriceAsync(string sku) //TODO: move to ProductPriceService
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
                 throw new ArgumentException(nameof(sku));
             }
 
-            return await _productRepository.GetProductPriceAsync(sku);
+            return await _productRepository.GetProductPriceAsync(sku);  //Needs to return the domain model but service needs to return dto, so map
         }
 
         public async Task UpdatePriceAsync(string sku, decimal newPrice)
@@ -69,6 +74,10 @@ namespace SupermarketCheckout.Application.Services
             {
                 throw new ArgumentOutOfRangeException(nameof(newPrice));
             }
+
+            //get prod price
+            //update price
+            //save
 
             await _productRepository.UpdatePriceAsync(sku, newPrice);
         }

@@ -4,11 +4,11 @@ using SupermarketCheckout.Model.Repositories;
 
 namespace SupermarketCheckout.Application.Services
 {
-    public class OfferService : IOfferService
+    public class ProductOfferService : IProductOfferService
     {
         private readonly IOfferRepository _offerRepository;
 
-        public OfferService(IOfferRepository offerRepository)
+        public ProductOfferService(IOfferRepository offerRepository)
         {
             _offerRepository = offerRepository
                 ?? throw new ArgumentNullException(nameof(offerRepository));

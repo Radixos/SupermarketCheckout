@@ -9,23 +9,24 @@ namespace SupermarketCheckout.API.Controllers
     [ApiController]
     [Route("api/products/{sku}/price")]
     [ModelStateErrorRequestFilter]
-    public class ProductsPriceController : Controller
+    public class ProductPriceController : Controller
     {
         private readonly IProductService _productService;
 
-        public ProductsPriceController(IProductService productService)
+        public ProductPriceController(IProductService productService)
         {
-            _productService = productService;
+            _productService = productService
+                ?? throw new ArgumentNullException(nameof(productService));
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAsync(string sku)    //TODO: finish a method to return a price of a single product
+        public async Task<ActionResult> GetAsync(string sku)
         {
             try
             {
                 var price = await _productService.GetProductPriceAsync(sku);
 
-                var response = price;   //Do I need to do this? To maintain the decoupling thing?
+                var response = price;   //TODO: Create an object and return it, also in other controllers too
 
                 return Ok(response);
             }

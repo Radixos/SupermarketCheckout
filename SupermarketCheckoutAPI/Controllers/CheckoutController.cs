@@ -16,7 +16,8 @@ namespace SupermarketCheckout.API.Controllers
 
         public CheckoutController(ICheckoutService checkoutService)
         {
-            _checkoutService = checkoutService;
+            _checkoutService = checkoutService
+                ?? throw new ArgumentNullException(nameof(checkoutService));
         }
 
         [HttpPost]
@@ -26,7 +27,7 @@ namespace SupermarketCheckout.API.Controllers
             {
                 var totalPrice = await _checkoutService.GetTotalPriceAsync(request.Skus);
 
-                var response = new CheckoutResponse
+                var response = new CheckoutResponse //TODO: use a mapper
                 {
                     TotalPrice = totalPrice
                 };

@@ -18,15 +18,18 @@ namespace SupermarketCheckout.API.Controllers
 
         public ProductsController(IProductService productService)
         {
-            _productService = productService;
+            _productService = productService
+                ?? throw new ArgumentNullException(nameof(productService));
         }
 
-        [HttpGet]
+        //TODO: Add a get to retrieve all products
+
+        [HttpGet("{sku}")]
         public async Task<ActionResult> GetAsync(string sku)
         {
             try
             {
-                var product = await _productService.GetProductAsync(sku);  //TODO: have product in dto on app and map to product on application DOUBLE CHECK???
+                var product = await _productService.GetProductAsync(sku);
 
                 var response = ProductMapper.MapToProduct(product);
 
@@ -46,8 +49,8 @@ namespace SupermarketCheckout.API.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] Product product)
+        [HttpPost("{sku}")]
+        public async Task<ActionResult> PostAsync(string sku, [FromBody] Product product)
         {
             try
             {
@@ -71,7 +74,7 @@ namespace SupermarketCheckout.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{sku}")]
         public async Task<ActionResult> DeleteAsync(string sku)
         {
             try
