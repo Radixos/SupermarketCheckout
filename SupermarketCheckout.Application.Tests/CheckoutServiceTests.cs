@@ -8,7 +8,7 @@ namespace SupermarketCheckout.Application.Tests
     public class CheckoutServiceTests
     {
         [TestMethod]
-        public void EnsureItemCatalogRepositoryIsSuppliedToTheConstructor()
+        public void CheckoutServiceController_ThrowsArgumentNullException_WhenRepositoryIsNull()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new CheckoutService(null));
         }

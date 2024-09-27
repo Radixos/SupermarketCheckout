@@ -14,11 +14,11 @@ namespace SupermarketCheckout.Application.Services
                 ?? throw new ArgumentNullException(nameof(offerRepository));
         }
 
-        public async Task<OfferDto> GetOfferAsync(string sku, string offerType)
+        public async Task<OfferDto> GetOfferAsync(string sku, string offerType) //TODO ASK: What other tests?
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             if (string.IsNullOrWhiteSpace(offerType))

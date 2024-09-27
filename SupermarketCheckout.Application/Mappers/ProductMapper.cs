@@ -7,6 +7,11 @@ namespace SupermarketCheckout.Application.Mappers
     {
         public static ProductDto MapToProductDto(Product product)
         {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
             return new ProductDto
             {
                 Sku = product.Sku,

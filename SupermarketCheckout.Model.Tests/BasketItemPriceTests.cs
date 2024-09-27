@@ -4,7 +4,7 @@
     public class BasketItemPriceTests
     {
         [TestMethod]
-        public void EnsureUnitPriceIsNotNullInTheConstructor()
+        public void BasketItemPriceController_ThrowsArgumentOutOfRangeException_WhenUnitPriceIsBelowZero()
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
                 new BasketItemPrice(decimal.MinusOne, null));

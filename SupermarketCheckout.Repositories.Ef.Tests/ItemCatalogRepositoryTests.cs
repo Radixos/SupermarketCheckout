@@ -8,9 +8,17 @@ namespace SupermarketCheckout.Repositories.Ef.Tests
     public class ItemCatalogRepositoryTests
     {
         [TestMethod]
-        public void EnsureSupermarketContextIsProvidedToConstructor()
+        public void ItemCatalogRepositoryController_ThrowsArgumentNullException_WhenContextIsNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new ItemCatalogRepository(null, new OfferFactory()));
+            Assert.ThrowsException<ArgumentNullException>(() =>
+                new ItemCatalogRepository(null, new OfferFactory()));
+        }
+
+        [TestMethod]
+        public void ItemCatalogRepositoryController_ThrowsArgumentNullException_WhenOfferFactoryIsNull()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() =>
+                new ItemCatalogRepository(GetSupermarketContext(), null));
         }
 
         [TestMethod]

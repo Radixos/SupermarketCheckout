@@ -7,14 +7,21 @@ namespace SupermarketCheckout.Model.Tests
     public class BasketItemTests
     {
         [TestMethod]
-        public void EnsureSkusIsNotEmptyInTheConstructor()
+        public void BasketItemController_ThrowsArgumentException_WhenSkuIsNull()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+                new BasketItem(null, 1));
+        }
+
+        [TestMethod]
+        public void BasketItemController_ThrowsArgumentException_WhenSkuIsEmpty()
         {
             Assert.ThrowsException<ArgumentException>(() =>
                 new BasketItem("", 1));
         }
 
         [TestMethod]
-        public void EnsureQuantityIsNotZeroInTheConstructor()
+        public void BasketItemController_ThrowsArgumentOutOfRangeException_WhenQuantityIsZero()
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
                 new BasketItem("A", 0));
