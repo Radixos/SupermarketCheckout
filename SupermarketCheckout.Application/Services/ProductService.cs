@@ -1,6 +1,7 @@
 ﻿using SupermarketCheckout.Application.DTOs;
 using SupermarketCheckout.Application.Mappers;
 using SupermarketCheckout.Model;
+using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 
 namespace SupermarketCheckout.Application.Services
@@ -13,6 +14,13 @@ namespace SupermarketCheckout.Application.Services
         {
             _productRepository = productRepository
                 ?? throw new ArgumentNullException(nameof(productRepository));
+        }
+
+        public async Task<List<ProductDto>> GetAllProductsAsync()
+        {
+            var products = await _productRepository.GetAllProductsAsync();
+
+            return ProductMapper.MapToProductsDto(products);
         }
 
         public async Task<ProductDto> GetProductAsync(string sku)
@@ -47,8 +55,18 @@ namespace SupermarketCheckout.Application.Services
             }
 
             //get product
-            //mark product as deleted (done by domain model)
+            //mark product as deleted (done by domain model)    but how to od that? and why?
             //save the domain model
+
+            //var product = await _productRepository.GetProductBySkuAsync(sku);
+            //if (product == null)
+            //{
+            //    throw new NotFoundException($"Product with SKU {sku} not found.");
+            //}
+
+            //product.MarkAsDeleted(); //will have to adjust the db but then what's the point in deleting if I have a flag on the product?
+
+            //await _productRepository.UpdateProductAsync(product);
 
             await _productRepository.DeleteProductAsync(sku);
         }

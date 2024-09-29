@@ -34,7 +34,7 @@ namespace SupermarketCheckout.API.Controllers
             }
             catch (Exception ex)
                 when (ex is ArgumentException
-                      or NotFoundException) 
+                      or NotFoundException)
             {
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);

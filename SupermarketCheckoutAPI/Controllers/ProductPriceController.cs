@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
+using SupermarketCheckout.API.DTOs;
 using SupermarketCheckout.API.Filters;
 using SupermarketCheckout.API.Mappers;
 using SupermarketCheckout.Application.Services;
@@ -21,13 +22,13 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAsync(string sku)
+        public async Task<ActionResult<ProductPriceResponse>> GetAsync(string sku)
         {
             try
             {
-                var price = await _productPriceService.GetProductPriceAsync(sku);
+                var productPrice = await _productPriceService.GetProductPriceAsync(sku);
 
-                var response = ProductPriceMapper.MapToProductPriceResponse(price);
+                var response = ProductPriceMapper.MapToProductPriceResponse(productPrice);
 
                 return Ok(response);
             }

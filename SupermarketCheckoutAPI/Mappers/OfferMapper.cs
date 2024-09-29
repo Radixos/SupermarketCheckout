@@ -5,9 +5,9 @@ namespace SupermarketCheckout.API.Mappers
 {
     public class OfferMapper
     {
-        public static Offer MapToOffer(OfferDto offer)
+        public static OfferResponse MapToOffer(OfferDto offer)
         {
-            return new Offer
+            return new OfferResponse
             {
                 OfferPrice = offer.OfferPrice,
                 OfferQuantity = offer.OfferQuantity

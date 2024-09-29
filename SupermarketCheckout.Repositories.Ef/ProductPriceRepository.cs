@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 
@@ -14,7 +15,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<decimal> GetProductPriceAsync(string sku)
+        public async Task<ProductPrice> GetProductPriceAsync(string sku)
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
@@ -29,7 +30,10 @@ namespace SupermarketCheckout.Repositories.Ef
                 throw new NotFoundException(nameof(product));
             }
 
-            return product.Price;
+            return new ProductPrice //TODO ASK: Should I have this mapped using a mapper? So a mapper on Model layer?
+            {
+                Price = product.Price
+            };
         }
 
         public async Task UpdatePriceAsync(string sku, decimal newPrice)

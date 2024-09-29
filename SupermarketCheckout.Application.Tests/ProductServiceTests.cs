@@ -3,6 +3,6 @@
     [TestClass]
     public class ProductServiceTests
     {
-        //TODO: Finish
+        //TODO: Finish tests
     }
 }

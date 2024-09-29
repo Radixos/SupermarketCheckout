@@ -19,5 +19,14 @@ namespace SupermarketCheckout.Application.Mappers
                 OfferType = product.OfferType
             };
         }
+
+        public static List<ProductDto> MapToProductsDto(List<Product> products)
+        {
+            return products.Select(product => new ProductDto {
+                Sku = product.Sku,
+                Price = product.Price,
+                OfferType = product.OfferType
+            }).ToList();
+        }
     }
 }

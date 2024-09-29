@@ -1,14 +1,15 @@
 ﻿using SupermarketCheckout.API.DTOs;
+using SupermarketCheckout.Application.DTOs;
 
 namespace SupermarketCheckout.API.Mappers
 {
     public class ProductPriceMapper
     {
-        public static ProductPriceResponse MapToProductPriceResponse(decimal price)
+        public static ProductPriceResponse MapToProductPriceResponse(ProductPriceDto productPriceDto)
         {
             return new ProductPriceResponse
             {
-                Price = price
+                Price = productPriceDto.Price
             };
         }
     }

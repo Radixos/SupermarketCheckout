@@ -22,10 +22,33 @@ namespace SupermarketCheckout.API.Controllers
                 ?? throw new ArgumentNullException(nameof(productService));
         }
 
-        //TODO: Add a get to retrieve all products
+        [HttpGet]
+        public async Task<ActionResult<ProductsResponse>> GetAsync()
+        {
+            try
+            {
+                var products = await _productService.GetAllProductsAsync();
+
+                var response = ProductMapper.MapToProductsResponse(products);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+                when (ex is ArgumentException
+                      or NotFoundException)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "Internal server error occured.");
+            }
+        }
 
         [HttpGet("{sku}")]
-        public async Task<ActionResult> GetAsync(string sku)
+        public async Task<ActionResult<Product>> GetAsync(string sku)
         {
             try
             {

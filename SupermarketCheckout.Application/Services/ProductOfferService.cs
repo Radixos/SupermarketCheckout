@@ -1,5 +1,6 @@
 ﻿using SupermarketCheckout.Application.DTOs;
 using SupermarketCheckout.Application.Mappers;
+using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 
 namespace SupermarketCheckout.Application.Services
@@ -27,6 +28,11 @@ namespace SupermarketCheckout.Application.Services
             }
 
             var offer = await _offerRepository.GetOfferAsync(sku, offerType);
+
+            if (offer == null)
+            {
+                throw new NotFoundException(nameof(offer));
+            }
 
             return OfferMapper.MapToOfferDto(offer);
         }

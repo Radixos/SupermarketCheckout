@@ -3,6 +3,7 @@ using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 using SupermarketCheckout.Repositories.Ef.Entities;
+using SupermarketCheckout.Repositories.Ef.Mappers;
 
 namespace SupermarketCheckout.Repositories.Ef
 {
@@ -14,6 +15,23 @@ namespace SupermarketCheckout.Repositories.Ef
         {
             _context = context
                 ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        public async Task<List<Product>> GetAllProductsAsync()
+        {
+            var products = await _context.Product
+                .Select(product => new {
+                    product.Sku,
+                    product.Price,
+                    OfferType = product.Offer != null ? product.Offer.OfferType : null
+                    }).ToListAsync();
+
+            if (products == null || !products.Any())
+            {
+                throw new NotFoundException();
+            }
+
+            return products.Select(p => ProductMapper.MapToProduct(p)).ToList();
         }
 
         public async Task<Product> GetProductAsync(string sku)

@@ -24,5 +24,20 @@ namespace SupermarketCheckout.API.Mappers
                 OfferType = productDto.OfferType ?? null
             };
         }
+
+        public static ProductsResponse MapToProductsResponse(List<ProductDto> products)
+        {
+            var productList = products.Select(dto => new Product
+            {
+                Sku = dto.Sku,
+                Price = dto.Price,
+                OfferType = dto.OfferType
+            }).ToList();
+
+            return new ProductsResponse
+            {
+                Products = productList
+            };
+        }
     }
 }

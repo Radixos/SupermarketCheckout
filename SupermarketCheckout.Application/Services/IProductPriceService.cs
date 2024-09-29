@@ -1,8 +1,10 @@
-﻿namespace SupermarketCheckout.Application.Services
+﻿using SupermarketCheckout.Application.DTOs;
+
+namespace SupermarketCheckout.Application.Services
 {
     public interface IProductPriceService
     {
-        Task<decimal> GetProductPriceAsync(string sku);
+        Task<ProductPriceDto> GetProductPriceAsync(string sku);
         Task UpdatePriceAsync(string sku, decimal newPrice);
     }
 }
