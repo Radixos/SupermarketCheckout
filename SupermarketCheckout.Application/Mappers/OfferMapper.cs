@@ -5,17 +5,18 @@ namespace SupermarketCheckout.Application.Mappers
 {
     public class OfferMapper
     {
-        public static OfferDto MapToOfferDto(Offer offer)
+        public static OfferDto? MapToOfferDto(Offer? productOffer)
         {
-            if (offer == null)
+            if (productOffer == null)
             {
-                throw new ArgumentNullException(nameof(offer));
+                return null;
             }
 
             return new OfferDto
             {
-                OfferQuantity = offer.OfferQuantity,
-                OfferPrice = offer.OfferPrice
+                Type = productOffer.OfferType,
+                Price = productOffer.OfferPrice,
+                Quantity = productOffer.OfferQuantity
             };
         }
     }

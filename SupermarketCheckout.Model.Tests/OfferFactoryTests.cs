@@ -31,6 +31,15 @@
         }
 
         [TestMethod]
+        public void CreateOffer_ThrowsArgumentOutOfRangeException_WhenOfferTypeIsLowerCase()
+        {
+            var offerFactory = new OfferFactory();
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+                offerFactory.CreateOffer("multibuy", 3, 130));
+        }
+
+        [TestMethod]
         public void CreateOffer_ThrowsArgumentOutOfRangeException_WhenOfferQuantityIsZero()
         {
             var offerFactory = new OfferFactory();

@@ -2,6 +2,6 @@
 {
     public interface IOfferRepository
     {
-        Task<Offer> GetOfferAsync(string sku, string offerType);
+        Task<Offer?> GetOfferAsync(string sku, string offerType);
     }
 }

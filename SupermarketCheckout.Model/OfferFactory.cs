@@ -2,7 +2,7 @@
 {
     public class OfferFactory : IOfferFactory
     {
-        public Offer CreateOffer(string offerType, int offerQuantity, decimal offerPrice)   //TODO: write tests (offer type "MultiBuy", test lower case letters)
+        public Offer CreateOffer(string offerType, int offerQuantity, decimal offerPrice)
         {
             if (string.IsNullOrWhiteSpace(offerType))
             {

@@ -6,6 +6,8 @@
             : base(offerQuantity, offerPrice)
         { }
 
+        public override string OfferType => "MultiBuy";
+
         public override decimal CalculateOfferPrice(int skuQuantity, decimal unitPrice)
         {
             if (skuQuantity <= 0) {

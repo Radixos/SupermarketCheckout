@@ -2,6 +2,6 @@
 {
     public class ProductsResponse
     {
-        public List<Product> Products { get; set; }
+        public required List<Product> Products { get; set; }
     }
 }

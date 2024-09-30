@@ -19,11 +19,11 @@ namespace SupermarketCheckout.Repositories.Ef
                 ?? throw new ArgumentNullException(nameof(offerFactory));
         }
 
-        public async Task<Offer> GetOfferAsync(string sku, string offerType)
+        public async Task<Offer?> GetOfferAsync(string sku, string offerType)    //TODO ASK: Where is the place for all of those tests?
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentNullException(nameof(sku));
+                throw new ArgumentException(nameof(sku));
             }
 
             if (string.IsNullOrWhiteSpace(offerType))
@@ -32,7 +32,7 @@ namespace SupermarketCheckout.Repositories.Ef
             }
 
             var productWithOffer = await _context.Product
-                .Where(p => p.Sku == sku && p.Offer != null) // Ensure the product has an offer
+                .Where(p => p.Sku == sku && p.Offer != null)
                 .Join(_context.Offer,
                     product => product.OfferId,
                     offer => offer.OfferId,
@@ -45,11 +45,6 @@ namespace SupermarketCheckout.Repositories.Ef
             }
 
             var offer = BasketItemMapper.MapToOffer(productWithOffer.offer, _offerFactory);    //TODO ASK: is this how I should map if I use offerFactory?
-
-            if (offer == null)
-            {
-                throw new NotFoundException(nameof(offer));
-            }
 
             return offer;
         }

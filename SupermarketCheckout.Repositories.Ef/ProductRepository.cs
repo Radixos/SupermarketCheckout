@@ -42,32 +42,49 @@ namespace SupermarketCheckout.Repositories.Ef
             }
 
             var product = await _context.Product
+                .Where(p => p.Sku == sku)
                 .Select(product => new
                 {
                     product.Sku,
                     product.Price,
-                    OfferType = product.Offer != null ? product.Offer.OfferType : null
-                })
-                .FirstOrDefaultAsync(p => p.Sku == sku);
+                    Offer = product.OfferId != null
+                        ? _context.Offer
+                            .Where(o => o.OfferId == product.OfferId)
+                            .Select(o => new
+                            {
+                                o.OfferType,
+                                o.OfferQuantity,
+                                o.OfferPrice
+                            })
+                            .FirstOrDefault()
+                        : null
+                }).FirstOrDefaultAsync();
 
             if (product == null)
             {
-                throw new NotFoundException($"Product with Sku '{sku}' doesn't exists.");
+                throw new NotFoundException($"Product with Sku '{sku}' doesn't exist.");
             }
 
-            return new Product(product.Sku, product.Price, product.OfferType);
+            Offer? offer = null;
+
+            if (product.Offer != null)
+            {
+                var offerFactory = new OfferFactory();
+                offer = offerFactory.CreateOffer(
+                    product.Offer.OfferType,
+                    product.Offer.OfferQuantity ?? 0,
+                    product.Offer.OfferPrice ?? 0
+                );
+            }
+
+            return new Product(product.Sku, product.Price, offer);
         }
 
-        public async Task AddProductAsync(Product product)  //pass in a new model, do the validation for existing obj there
+        public async Task AddProductAsync(Product product)  //TODO: Assume model is correct and dont check for what it contains
         {
-            if (string.IsNullOrWhiteSpace(product.Sku))
+            if (product == null)
             {
-                throw new ArgumentException("Cannot be null or white space", nameof(product.Sku));
-            }
-
-            if (product.Price < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(product.Price));
+                throw new ArgumentNullException(nameof(product));
             }
 
             var existingProduct = await _context.Product.FirstOrDefaultAsync(p => p.Sku == product.Sku);
@@ -79,9 +96,9 @@ namespace SupermarketCheckout.Repositories.Ef
 
             OfferEntity? offerEntity = null;
 
-            if (!string.IsNullOrWhiteSpace(product.OfferType))
+            if (!string.IsNullOrWhiteSpace(product.Offer?.OfferType))
             {
-                offerEntity = await _context.Offer.FirstOrDefaultAsync(o => o.OfferType == product.OfferType);
+                offerEntity = await _context.Offer.FirstOrDefaultAsync(o => o.OfferType == product.Offer.OfferType);
             }
 
             var newProduct = new ProductEntity

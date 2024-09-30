@@ -72,8 +72,8 @@ namespace SupermarketCheckout.API.Controllers
             }
         }
 
-        [HttpPost("{sku}")]
-        public async Task<ActionResult> PostAsync(string sku, [FromBody] Product product)
+        [HttpPost]
+        public async Task<ActionResult> PostAsync([FromBody] Product product)
         {
             try
             {

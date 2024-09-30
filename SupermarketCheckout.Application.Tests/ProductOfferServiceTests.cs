@@ -68,22 +68,8 @@ namespace SupermarketCheckout.Application.Tests
             var result = await service.GetOfferAsync("ValidSku", "ValidOfferType");
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(offer.OfferQuantity, result.OfferQuantity);
-            Assert.AreEqual(offer.OfferPrice, result.OfferPrice);
-        }
-
-        [TestMethod]
-        public async Task GetOfferAsync_ThrowsNotFoundException_WhenOfferDoesNotExist()
-        {
-            var repositoryMock = new Mock<IOfferRepository>();
-            repositoryMock
-                .Setup(r => r.GetOfferAsync(It.IsAny<string>(), It.IsAny<string>()))
-                .ReturnsAsync((Offer?)null);
-
-            var service = new ProductOfferService(repositoryMock.Object);
-
-            await Assert.ThrowsExceptionAsync<NotFoundException>(() =>
-                service.GetOfferAsync("ValidSku", "InvalidOfferType"));
+            Assert.AreEqual(offer.OfferQuantity, result.Quantity);
+            Assert.AreEqual(offer.OfferPrice, result.Price);
         }
 
         private OfferFactory GetOfferFactory()

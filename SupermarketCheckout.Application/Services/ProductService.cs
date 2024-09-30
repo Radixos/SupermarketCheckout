@@ -9,16 +9,26 @@ namespace SupermarketCheckout.Application.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IOfferRepository _offerRepository;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, IOfferRepository offerRepository)
         {
             _productRepository = productRepository
                 ?? throw new ArgumentNullException(nameof(productRepository));
+            _offerRepository = offerRepository
+                ?? throw new ArgumentNullException(nameof(offerRepository));
         }
 
         public async Task<List<ProductDto>> GetAllProductsAsync()
         {
             var products = await _productRepository.GetAllProductsAsync();
+
+            if (products == null)   //TODO ASK: Do I need checks like that? So basically after every line when
+                                    //the code comes back from a different layer? If so, should I test if this is
+                                    //thrown?
+            {
+                throw new NotFoundException();
+            }
 
             return ProductMapper.MapToProductsDto(products);
         }
@@ -42,9 +52,19 @@ namespace SupermarketCheckout.Application.Services
                 throw new ArgumentNullException(nameof(productDto));
             }
 
-            var product = new Product(productDto.Sku, productDto.Price, productDto.OfferType ?? null);
+            var offerFactory = new OfferFactory();
 
-            await _productRepository.AddProductAsync(product);  //TODO ASK: can this receive a domain model?
+            Offer? offer = null;
+
+            if (productDto.Offer != null)
+            {
+                offer = offerFactory.CreateOffer(productDto.Offer.Type,
+                    productDto.Offer.Quantity, productDto.Offer.Price);
+            }
+
+            var product = new Product(productDto.Sku, productDto.Price, offer);
+
+            await _productRepository.AddProductAsync(product);
         }
 
         public async Task DeleteProductAsync(string sku)

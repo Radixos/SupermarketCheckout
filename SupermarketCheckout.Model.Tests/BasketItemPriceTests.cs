@@ -33,7 +33,7 @@
         }
 
         [TestMethod]
-        public void CalculateTotalBasketItemPrice_DoesntReturnReturnOfferPrice_WhenHasOfferIsTrue()
+        public void CalculateTotalBasketItemPrice_DoesNotReturnReturnOfferPrice_WhenHasOfferIsTrue()
         {
             var basketItemPrice = new BasketItemPrice(50, null);
             Assert.AreEqual(100, basketItemPrice.CalculateTotalBasketItemPrice(2)); //2*50

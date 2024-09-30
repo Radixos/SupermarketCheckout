@@ -5,23 +5,13 @@ namespace SupermarketCheckout.API.Mappers
 {
     public class ProductMapper
     {
-        public static ProductDto MapToProductDto(Product product)
-        {
-            return new ProductDto
-            {
-                Sku = product.Sku,
-                Price = product.Price,
-                OfferType = product.OfferType ?? null
-            };
-        }
-
         public static Product MapToProduct(ProductDto productDto)
         {
             return new Product
             {
                 Sku = productDto.Sku,
                 Price = productDto.Price,
-                OfferType = productDto.OfferType ?? null
+                Offer = OfferMapper.MapToOffer(productDto.Offer)
             };
         }
 
@@ -31,12 +21,22 @@ namespace SupermarketCheckout.API.Mappers
             {
                 Sku = dto.Sku,
                 Price = dto.Price,
-                OfferType = dto.OfferType
+                Offer = OfferMapper.MapToOffer(dto.Offer)
             }).ToList();
 
             return new ProductsResponse
             {
                 Products = productList
+            };
+        }
+
+        public static ProductDto MapToProductDto(Product product)
+        {
+            return new ProductDto
+            {
+                Sku = product.Sku,
+                Price = product.Price,
+                Offer = OfferMapper.MapToOfferDto(product.Offer)
             };
         }
     }

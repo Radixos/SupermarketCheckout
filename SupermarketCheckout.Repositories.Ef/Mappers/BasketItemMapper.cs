@@ -17,7 +17,7 @@ namespace SupermarketCheckout.Repositories.Ef.Mappers
                 MapToOffer(entity.Offer, offerFactory));
         }
 
-        public static Offer? MapToOffer(OfferEntity? entity, IOfferFactory offerFactory)
+        public static Offer? MapToOffer(OfferEntity? entity, IOfferFactory offerFactory)    //TODO: Rethink
         {
             if (entity == null || !entity.OfferQuantity.HasValue || !entity.OfferPrice.HasValue)
             {

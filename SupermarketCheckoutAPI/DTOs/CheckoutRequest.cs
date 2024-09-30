@@ -2,6 +2,6 @@
 {
     public class CheckoutRequest
     {
-        public List<string> Skus { get; set; }
+        public required List<string> Skus { get; set; }
     }
 }

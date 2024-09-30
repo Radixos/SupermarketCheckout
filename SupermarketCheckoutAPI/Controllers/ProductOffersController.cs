@@ -21,13 +21,13 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpGet("{offerType}")]
-        public async Task<ActionResult<OfferResponse>> GetAsync(string sku, string offerType)
+        public async Task<IActionResult> GetAsync(string sku, string offerType) //TODO: Use IActionResult for others
         {
             try
             {
                 var offer = await _productOfferService.GetOfferAsync(sku, offerType);
 
-                var response = OfferMapper.MapToOffer(offer);
+                var response = OfferMapper.MapToOfferResponse(offer);
 
                 return Ok(response);
             }

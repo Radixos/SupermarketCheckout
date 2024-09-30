@@ -6,9 +6,9 @@ namespace SupermarketCheckout.Model
     {
         public string Sku { get; set; }
         public decimal Price { get; set; }
-        public string? OfferType { get; set; }
+        public Offer? Offer { get; set; }
 
-        public Product(string sku, decimal price, string? offerType = null)
+        public Product(string sku, decimal price, Offer? offer)
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
@@ -22,7 +22,7 @@ namespace SupermarketCheckout.Model
 
             Sku = sku;
             Price = price;
-            OfferType = offerType;
+            Offer = offer;
         }
 
         public async Task<Product> GetProductAsync(IProductRepository productRepository)

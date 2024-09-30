@@ -2,8 +2,8 @@
 {
     public class Product
     {
-        public string Sku { get; set; }
+        public required string Sku { get; set; }
         public decimal Price { get; set; }
-        public string? OfferType { get; set; }
+        public Offer? Offer { get; set; }
     }
 }

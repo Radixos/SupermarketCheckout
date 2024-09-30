@@ -15,7 +15,7 @@ namespace SupermarketCheckout.Application.Services
                 ?? throw new ArgumentNullException(nameof(offerRepository));
         }
 
-        public async Task<OfferDto> GetOfferAsync(string sku, string offerType) //TODO ASK: What other tests?
+        public async Task<OfferDto?> GetOfferAsync(string sku, string offerType) //TODO ASK: What other tests?
         {
             if (string.IsNullOrWhiteSpace(sku))
             {
@@ -28,11 +28,6 @@ namespace SupermarketCheckout.Application.Services
             }
 
             var offer = await _offerRepository.GetOfferAsync(sku, offerType);
-
-            if (offer == null)
-            {
-                throw new NotFoundException(nameof(offer));
-            }
 
             return OfferMapper.MapToOfferDto(offer);
         }
