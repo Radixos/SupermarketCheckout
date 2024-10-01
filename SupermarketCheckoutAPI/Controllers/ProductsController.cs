@@ -5,8 +5,6 @@ using SupermarketCheckout.API.DTOs;
 using SupermarketCheckout.API.Filters;
 using SupermarketCheckout.API.Mappers;
 
-//TODO: Add relevant tests for all of this and deeper
-
 namespace SupermarketCheckout.API.Controllers
 {
     [ApiController]
@@ -23,7 +21,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ProductsResponse>> GetAsync()
+        public async Task<IActionResult> GetAsync()
         {
             try
             {
@@ -48,7 +46,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpGet("{sku}")]
-        public async Task<ActionResult<Product>> GetAsync(string sku)
+        public async Task<IActionResult> GetAsync(string sku)
         {
             try
             {
@@ -73,7 +71,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] Product product)
+        public async Task<IActionResult> PostAsync([FromBody] Product product)
         {
             try
             {
@@ -98,7 +96,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpDelete("{sku}")]
-        public async Task<ActionResult> DeleteAsync(string sku)
+        public async Task<IActionResult> DeleteAsync(string sku)
         {
             try
             {

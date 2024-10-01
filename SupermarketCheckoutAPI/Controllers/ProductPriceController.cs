@@ -22,7 +22,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ProductPriceResponse>> GetAsync(string sku)
+        public async Task<IActionResult> GetAsync(string sku)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> PutAsync(string sku, decimal newPrice)
+        public async Task<IActionResult> PutAsync(string sku, decimal newPrice)
         {
             try
             {

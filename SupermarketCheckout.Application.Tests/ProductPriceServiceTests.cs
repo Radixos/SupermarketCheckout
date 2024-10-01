@@ -25,6 +25,6 @@ namespace SupermarketCheckout.Application.Tests
                     .GetProductPriceAsync(null));
         }
 
-        //TODO: Finish tests
+        //TODO: Finish
     }
 }

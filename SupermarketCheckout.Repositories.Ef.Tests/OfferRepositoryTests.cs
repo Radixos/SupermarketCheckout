@@ -58,7 +58,7 @@ namespace SupermarketCheckout.Repositories.Ef.Tests
                 repo.GetOfferAsync("A", ""));
         }
 
-        private OfferRepository GetOfferRepository()    //TODO ASK: Lowercase or not?
+        private OfferRepository GetOfferRepository()
         {
             return new OfferRepository(GetContext(), GetOfferFactory());
         }

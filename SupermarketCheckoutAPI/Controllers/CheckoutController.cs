@@ -22,7 +22,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CheckoutResponse>> PostAsync([FromBody][Required] CheckoutRequest request)
+        public async Task<IActionResult> PostAsync([FromBody][Required] CheckoutRequest request)
         {
             try
             {

@@ -80,7 +80,7 @@ namespace SupermarketCheckout.Repositories.Ef
             return new Product(product.Sku, product.Price, offer);
         }
 
-        public async Task AddProductAsync(Product product)  //TODO: Assume model is correct and dont check for what it contains
+        public async Task AddProductAsync(Product product)
         {
             if (product == null)
             {

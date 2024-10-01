@@ -43,7 +43,7 @@ namespace SupermarketCheckout.Application.Services
             //TODO ASK: How can I apply above comments? The way I see this work would be like below but I'd need to make
             //an extra call to a different repo:
 
-            //var product = await _productPriceRepository.GetProductBySkuAsync(sku);
+            //var product = await _productRepository.GetProductAsync(sku);
             //if (product == null) {
             //    throw new NotFoundException($"Product with SKU {sku} not found.");
             //}

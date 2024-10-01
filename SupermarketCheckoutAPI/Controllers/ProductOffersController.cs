@@ -21,7 +21,7 @@ namespace SupermarketCheckout.API.Controllers
         }
 
         [HttpGet("{offerType}")]
-        public async Task<IActionResult> GetAsync(string sku, string offerType) //TODO: Use IActionResult for others
+        public async Task<IActionResult> GetAsync(string sku, string offerType)
         {
             try
             {
