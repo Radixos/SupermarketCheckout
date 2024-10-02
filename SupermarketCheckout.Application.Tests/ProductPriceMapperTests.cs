@@ -17,10 +17,7 @@ namespace SupermarketCheckout.Application.Tests
         [TestMethod]
         public void MapToProductPriceDto_CorrectlyMapsProperties()
         {
-            var productPrice = new ProductPrice
-            {
-                Price = 50
-            };
+            var productPrice = new ProductPrice(50);
 
             var productPriceDto = ProductPriceMapper.MapToProductPriceDto(productPrice);
 

@@ -5,16 +5,16 @@ namespace SupermarketCheckout.Application.Mappers
 {
     public class ProductPriceMapper
     {
-        public static ProductPriceDto MapToProductPriceDto(ProductPrice productPriceDto)
+        public static ProductPriceDto MapToProductPriceDto(ProductPrice productPrice)
         {
-            if (productPriceDto == null)
+            if (productPrice == null)
             {
-                throw new ArgumentNullException(nameof(productPriceDto));
+                throw new ArgumentNullException(nameof(productPrice));
             }
 
             return new ProductPriceDto
             {
-                Price = productPriceDto.Price
+                Price = productPrice.Price
             };
         }
     }

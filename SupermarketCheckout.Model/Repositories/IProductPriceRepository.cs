@@ -3,6 +3,6 @@
     public interface IProductPriceRepository
     {
         Task<ProductPrice> GetProductPriceAsync(string sku);
-        Task UpdatePriceAsync(string sku, decimal newPrice);
+        Task UpdatePriceAsync(ProductPrice productPrice, string sku);
     }
 }

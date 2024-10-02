@@ -2,6 +2,9 @@
 {
     public class BasketItemPrice
     {
+        public decimal UnitPrice { get; }
+        public Offer? Offer { get; }
+
         public BasketItemPrice(decimal unitPrice, Offer? offer)
         {
             if (unitPrice < 0) {
@@ -11,9 +14,6 @@
             UnitPrice = unitPrice;
             Offer = offer;
         }
-
-        public decimal UnitPrice { get; }
-        public Offer? Offer { get; }
 
         public bool HasOffer
         {

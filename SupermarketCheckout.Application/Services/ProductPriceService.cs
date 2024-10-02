@@ -1,5 +1,6 @@
 ﻿using SupermarketCheckout.Application.DTOs;
 using SupermarketCheckout.Application.Mappers;
+using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 
@@ -36,23 +37,11 @@ namespace SupermarketCheckout.Application.Services
                 throw new ArgumentOutOfRangeException(nameof(newPrice));
             }
 
-            //get prod price
-            //update price
-            //save
+            var productPrice = await _productPriceRepository.GetProductPriceAsync(sku); //get product price
 
-            //TODO ASK: How can I apply above comments? The way I see this work would be like below but I'd need to make
-            //an extra call to a different repo:
+            productPrice.UpdatePrice(newPrice); //update price
 
-            //var product = await _productRepository.GetProductAsync(sku);
-            //if (product == null) {
-            //    throw new NotFoundException($"Product with SKU {sku} not found.");
-            //}
-
-            //product.Price = newPrice;
-
-            //await _productPriceRepository.UpdateProductAsync(product);
-
-            await _productPriceRepository.UpdatePriceAsync(sku, newPrice);
+            await _productPriceRepository.UpdatePriceAsync(productPrice, sku); //save
         }
     }
 }

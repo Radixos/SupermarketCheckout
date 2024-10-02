@@ -2,6 +2,7 @@
 using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
+using SupermarketCheckout.Repositories.Ef.Mappers;
 
 namespace SupermarketCheckout.Repositories.Ef
 {
@@ -30,22 +31,19 @@ namespace SupermarketCheckout.Repositories.Ef
                 throw new NotFoundException(nameof(product));
             }
 
-            return new ProductPrice //TODO ASK: Should I have this mapped using a mapper? So a mapper on Model layer?
-            {
-                Price = product.Price
-            };
+            return ProductPriceMapper.MapToProductPrice(product.Price);
         }
 
-        public async Task UpdatePriceAsync(string sku, decimal newPrice)
+        public async Task UpdatePriceAsync(ProductPrice productPrice, string sku)
         {
-            if (string.IsNullOrWhiteSpace(sku))
+            if (productPrice == null)
             {
-                throw new ArgumentException(nameof(sku));
+                throw new ArgumentNullException(nameof(productPrice));
             }
 
-            if (newPrice < 0)
+            if (string.IsNullOrWhiteSpace(sku))
             {
-                throw new ArgumentOutOfRangeException(nameof(newPrice));
+                throw new ArgumentException(sku);
             }
 
             var product = await _context.Product.FirstOrDefaultAsync(p => p.Sku == sku);
@@ -55,12 +53,7 @@ namespace SupermarketCheckout.Repositories.Ef
                 throw new NotFoundException(nameof(product));
             }
 
-            if (product.Price == newPrice)
-            {
-                throw new ArgumentException($"Price is already set to {newPrice}");
-            }
-
-            product.Price = newPrice;
+            product.Price = productPrice.Price;
 
             await _context.SaveChangesAsync();
         }
