@@ -7,6 +7,11 @@ namespace SupermarketCheckout.API.Mappers
     {
         public static Product MapToProduct(ProductDto productDto)
         {
+            if (productDto == null)
+            {
+                throw new ArgumentNullException(nameof(productDto));
+            }
+
             return new Product
             {
                 Sku = productDto.Sku,
@@ -17,6 +22,11 @@ namespace SupermarketCheckout.API.Mappers
 
         public static ProductsResponse MapToProductsResponse(List<ProductDto> products)
         {
+            if (products == null)
+            {
+                throw new ArgumentNullException(nameof(products));
+            }
+
             var productList = products.Select(dto => new Product
             {
                 Sku = dto.Sku,
@@ -32,6 +42,11 @@ namespace SupermarketCheckout.API.Mappers
 
         public static ProductDto MapToProductDto(Product product)
         {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
             return new ProductDto
             {
                 Sku = product.Sku,

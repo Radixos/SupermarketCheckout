@@ -4,7 +4,8 @@
     {
         Task<List<Product>> GetAllProductsAsync();
         Task<Product> GetProductAsync(string sku);
+        //Task<ProductToDelete> GetProductToDeleteAsync(string sku);
         Task AddProductAsync(Product product);
-        Task DeleteProductAsync(string sku);
+        Task DeleteProductAsync(Product product);
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SupermarketCheckout.Model
+﻿namespace SupermarketCheckout.Model
 {
     public abstract class Offer
     {

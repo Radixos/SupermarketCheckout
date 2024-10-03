@@ -7,6 +7,16 @@ namespace SupermarketCheckout.Application.Tests
     public class OfferMapperTests
     {
         [TestMethod]
+        public void MapToOfferDto_ReturnsNull_WhenProductOfferIsNull()
+        {
+            Offer offer = null;
+
+            var offerDto = OfferMapper.MapToOfferDto(offer);
+
+            Assert.IsNull(offerDto);
+        }
+
+        [TestMethod]
         public void MapToOfferDto_CorrectlyMapsProperties()
         {
             var offerFactory = new OfferFactory();
@@ -14,8 +24,8 @@ namespace SupermarketCheckout.Application.Tests
 
             var offerDto = OfferMapper.MapToOfferDto(offer);
 
-            Assert.AreEqual(offer.OfferQuantity, offerDto.Quantity);
-            Assert.AreEqual(offer.OfferPrice, offerDto.Price);
+            Assert.AreEqual(offer.OfferQuantity, offerDto?.Quantity);
+            Assert.AreEqual(offer.OfferPrice, offerDto?.Price);
         }
     }
 }

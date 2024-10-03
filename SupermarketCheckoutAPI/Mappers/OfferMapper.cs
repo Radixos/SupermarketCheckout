@@ -19,33 +19,33 @@ namespace SupermarketCheckout.API.Mappers
             };
         }
 
-        public static Offer? MapToOffer(OfferDto? productDtoOffer)
+        public static Offer? MapToOffer(OfferDto? offerDto)
         {
-            if (productDtoOffer == null)
+            if (offerDto == null)
             {
                 return null;
             }
 
             return new Offer
             {
-                Type = productDtoOffer.Type,
-                Price = productDtoOffer.Price,
-                Quantity = productDtoOffer.Quantity
+                Type = offerDto.Type,
+                Price = offerDto.Price,
+                Quantity = offerDto.Quantity
             };
         }
 
-        public static OfferDto? MapToOfferDto(Offer? productOffer)
+        public static OfferDto? MapToOfferDto(Offer? offer)
         {
-            if (productOffer == null)
+            if (offer == null)
             {
                 return null;
             }
 
             return new OfferDto
             {
-                Type = productOffer.Type,
-                Price = productOffer.Price,
-                Quantity = productOffer.Quantity
+                Type = offer.Type,
+                Price = offer.Price,
+                Quantity = offer.Quantity
             };
         }
     }

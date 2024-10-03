@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupermarketCheckout.Model.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupermarketCheckout.Repositories.Ef.Tests", "..\SupermarketCheckout.Repositories.Ef.Tests\SupermarketCheckout.Repositories.Ef.Tests.csproj", "{29DEC02D-E242-47AF-BC8E-D5BB32BF7908}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketCheckout.API.Tests", "..\SupermarketCheckout.API.Tests\SupermarketCheckout.API.Tests.csproj", "{85F5DFC2-7865-4B9A-8A94-8F324673E5F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{29DEC02D-E242-47AF-BC8E-D5BB32BF7908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29DEC02D-E242-47AF-BC8E-D5BB32BF7908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29DEC02D-E242-47AF-BC8E-D5BB32BF7908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85F5DFC2-7865-4B9A-8A94-8F324673E5F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85F5DFC2-7865-4B9A-8A94-8F324673E5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85F5DFC2-7865-4B9A-8A94-8F324673E5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85F5DFC2-7865-4B9A-8A94-8F324673E5F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{6DCC393F-52A1-4F48-B782-E3DA9EBF39EB} = {295380D4-82F0-41E5-8E64-E41213550F30}
 		{2D4B6A9D-578C-4252-AF38-E2B1E93B2710} = {295380D4-82F0-41E5-8E64-E41213550F30}
 		{29DEC02D-E242-47AF-BC8E-D5BB32BF7908} = {295380D4-82F0-41E5-8E64-E41213550F30}
+		{85F5DFC2-7865-4B9A-8A94-8F324673E5F8} = {295380D4-82F0-41E5-8E64-E41213550F30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F5B5237-EEDB-417E-AED5-F535CDF501A5}

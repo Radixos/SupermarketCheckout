@@ -29,11 +29,13 @@ namespace SupermarketCheckout.Application.Services
 
         public async Task UpdatePriceAsync(string sku, decimal newPrice)
         {
-            if (string.IsNullOrWhiteSpace(sku)) {
+            if (string.IsNullOrWhiteSpace(sku))
+            {
                 throw new ArgumentException(nameof(sku));
             }
 
-            if (newPrice < 0) {
+            if (newPrice < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(newPrice));
             }
 

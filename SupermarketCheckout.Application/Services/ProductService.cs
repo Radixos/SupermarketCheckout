@@ -23,9 +23,7 @@ namespace SupermarketCheckout.Application.Services
         {
             var products = await _productRepository.GetAllProductsAsync();
 
-            if (products == null)   //TODO ASK: Do I need checks like that? So basically after every line when
-                                    //the code comes back from a different layer? If so, should I test if this is
-                                    //thrown?
+            if (products == null)
             {
                 throw new NotFoundException();
             }
@@ -41,6 +39,11 @@ namespace SupermarketCheckout.Application.Services
             }
 
             var product = await _productRepository.GetProductAsync(sku);
+
+            if (product == null)
+            {
+                throw new NotFoundException();
+            }
 
             return ProductMapper.MapToProductDto(product);
         }
@@ -74,21 +77,16 @@ namespace SupermarketCheckout.Application.Services
                 throw new ArgumentException(nameof(sku));
             }
 
-            //get product
-            //mark product as deleted (done by domain model)    but how to od that? and why?
-            //save the domain model
+            var product = await _productRepository.GetProductAsync(sku);
 
-            //var product = await _productRepository.GetProductBySkuAsync(sku);
-            //if (product == null)
-            //{
-            //    throw new NotFoundException($"Product with SKU {sku} not found.");
-            //}
+            if (product == null)
+            {
+                throw new NotFoundException($"Product with SKU {sku} not found.");
+            }
 
-            //product.MarkAsDeleted(); //will have to adjust the db but then what's the point in deleting if I have a flag on the product?
+            //Call the domain model to perform any action when necessary
 
-            //await _productRepository.UpdateProductAsync(product);
-
-            await _productRepository.DeleteProductAsync(sku);
+            await _productRepository.DeleteProductAsync(product);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SupermarketCheckout.Model;
+using SupermarketCheckout.Repositories.Ef.Entities;
 
 namespace SupermarketCheckout.Repositories.Ef.Mappers
 {

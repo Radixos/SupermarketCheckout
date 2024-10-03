@@ -5,7 +5,7 @@ namespace SupermarketCheckout.Repositories.Ef.Entities
 {
     public class ProductEntity
     {
-        public string Sku { get; set; } = string.Empty;
+        public required string Sku { get; set; }
         public decimal Price { get; set; }
         public int? OfferId { get; set; }
         public OfferEntity? Offer { get; set; }

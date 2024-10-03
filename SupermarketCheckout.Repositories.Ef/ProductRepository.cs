@@ -113,21 +113,23 @@ namespace SupermarketCheckout.Repositories.Ef
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteProductAsync(string sku)
+        public async Task DeleteProductAsync(Product product)
         {
-            if (string.IsNullOrWhiteSpace(sku))
-            {
-                throw new ArgumentException(nameof(sku));
-            }
-
-            var product = await _context.Product.FirstOrDefaultAsync(p => p.Sku == sku);
-
             if (product == null)
             {
-                throw new NotFoundException(nameof(product));
+                throw new ArgumentNullException(nameof(product));
             }
 
-            _context.Product.Remove(product);
+            var existingProduct = await _context.Product
+                .FirstOrDefaultAsync(p => p.Sku == product.Sku);
+
+            if (existingProduct == null)
+            {
+                throw new NotFoundException($"Product with SKU '{product.Sku}' was not found.");
+            }
+
+            _context.Product.Remove(existingProduct);
+
             await _context.SaveChangesAsync();
         }
     }
