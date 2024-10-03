@@ -11,8 +11,8 @@ namespace SupermarketCheckout.Repositories.Ef
 
         }
 
-        public DbSet<ProductEntity> Product { get; set; }
-        public DbSet<OfferEntity> Offer { get; set; }
+        public virtual DbSet<ProductEntity> Product { get; set; }
+        public virtual DbSet<OfferEntity> Offer { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

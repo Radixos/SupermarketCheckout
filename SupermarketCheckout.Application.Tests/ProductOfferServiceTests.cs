@@ -12,8 +12,7 @@ namespace SupermarketCheckout.Application.Tests
     public class ProductOfferServiceTests
     {
         [TestMethod]
-        public void
-            ProductOfferServiceController_ThrowsArgumentNullException_WhenRepositoryIsNull()
+        public void ProductOfferService_ThrowsArgumentNullException_WhenRepositoryIsNull()
         {
             Assert.ThrowsException<ArgumentNullException>(() =>
                 new ProductOfferService(null));

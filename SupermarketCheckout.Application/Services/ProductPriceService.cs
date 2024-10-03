@@ -1,7 +1,5 @@
 ﻿using SupermarketCheckout.Application.DTOs;
 using SupermarketCheckout.Application.Mappers;
-using SupermarketCheckout.Model;
-using SupermarketCheckout.Model.Exceptions;
 using SupermarketCheckout.Model.Repositories;
 
 namespace SupermarketCheckout.Application.Services

@@ -44,9 +44,13 @@ namespace SupermarketCheckout.Repositories.Ef
                 throw new NotFoundException(nameof(productWithOffer));
             }
 
-            var offer = BasketItemMapper.MapToOffer(productWithOffer.offer, _offerFactory);    //TODO ASK: is this how I should map if I use offerFactory?
+            if (productWithOffer.offer.OfferQuantity == null || productWithOffer.offer.OfferPrice == null)
+            {
+                throw new InvalidOperationException("OfferQuantity and OfferPrice cannot be null.");
+            }
 
-            return offer;
+            return _offerFactory.CreateOffer(productWithOffer.offer.OfferType,
+                productWithOffer.offer.OfferQuantity.Value, productWithOffer.offer.OfferPrice.Value);
         }
     }
 }

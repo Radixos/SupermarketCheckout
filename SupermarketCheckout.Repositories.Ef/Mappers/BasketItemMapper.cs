@@ -3,7 +3,7 @@ using SupermarketCheckout.Repositories.Ef.Entities;
 
 namespace SupermarketCheckout.Repositories.Ef.Mappers
 {
-    internal static class BasketItemMapper
+    public static class BasketItemMapper
     {
         public static BasketItemPrice? MapToBasketItemPrice(ProductEntity? entity, IOfferFactory offerFactory)
         {

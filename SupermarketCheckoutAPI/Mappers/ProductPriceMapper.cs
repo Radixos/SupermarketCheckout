@@ -7,6 +7,11 @@ namespace SupermarketCheckout.API.Mappers
     {
         public static ProductPriceResponse MapToProductPriceResponse(ProductPriceDto productPriceDto)
         {
+            if (productPriceDto == null)
+            {
+                throw new ArgumentNullException(nameof(productPriceDto));
+            }
+
             return new ProductPriceResponse
             {
                 Price = productPriceDto.Price

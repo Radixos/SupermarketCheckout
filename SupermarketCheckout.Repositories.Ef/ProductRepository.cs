@@ -19,19 +19,15 @@ namespace SupermarketCheckout.Repositories.Ef
 
         public async Task<List<Product>> GetAllProductsAsync()
         {
-            var products = await _context.Product
-                .Select(product => new {
-                    product.Sku,
-                    product.Price,
-                    OfferType = product.Offer != null ? product.Offer.OfferType : null
-                    }).ToListAsync();
+            var productEntities = await _context.Product
+                .Include(p => p.Offer)
+                .ToListAsync();
 
-            if (products == null || !products.Any())
-            {
+            if (productEntities == null || !productEntities.Any()) {
                 throw new NotFoundException();
             }
 
-            return products.Select(p => ProductMapper.MapToProduct(p)).ToList();
+            return productEntities.Select(ProductMapper.MapToProduct).ToList();
         }
 
         public async Task<Product> GetProductAsync(string sku)

@@ -4,7 +4,7 @@
     public class BasketItemPriceTests
     {
         [TestMethod]
-        public void BasketItemPriceController_ThrowsArgumentOutOfRangeException_WhenUnitPriceIsBelowZero()
+        public void BasketItemPrice_ThrowsArgumentOutOfRangeException_WhenUnitPriceIsBelowZero()
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
                 new BasketItemPrice(decimal.MinusOne, null));
@@ -33,17 +33,17 @@
         }
 
         [TestMethod]
-        public void CalculateTotalBasketItemPrice_DoesNotReturnReturnOfferPrice_WhenHasOfferIsTrue()
+        public void CalculateTotalBasketItemPrice_ReturnsCorrectTotal_WhenNoOfferExists()
         {
             var basketItemPrice = new BasketItemPrice(50, null);
-            Assert.AreEqual(100, basketItemPrice.CalculateTotalBasketItemPrice(2)); //2*50
+            Assert.AreEqual(100, basketItemPrice.CalculateTotalBasketItemPrice(2)); // 2 * 50
         }
 
         [TestMethod]
-        public void CalculateTotalBasketItemPrice_ReturnsOfferPrice_WhenHasOfferIsFalse()
+        public void CalculateTotalBasketItemPrice_ReturnsOfferPrice_WhenOfferIsSupplied()
         {
             var basketItemPrice = GetBasketItemPriceWithOffer();
-            Assert.AreEqual(130, basketItemPrice.CalculateTotalBasketItemPrice(3)); //130
+            Assert.AreEqual(130, basketItemPrice.CalculateTotalBasketItemPrice(3)); // 130
         }
 
         private BasketItemPrice GetBasketItemPriceWithOffer()

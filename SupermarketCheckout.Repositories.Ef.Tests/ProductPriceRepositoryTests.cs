@@ -1,49 +1,51 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Moq;
 using SupermarketCheckout.Model;
 using SupermarketCheckout.Model.Exceptions;
-using SupermarketCheckout.Model.Repositories;
 using SupermarketCheckout.Repositories.Ef.Entities;
-using System.Linq.Expressions;
 
 namespace SupermarketCheckout.Repositories.Ef.Tests
 {
     [TestClass]
     public class ProductPriceRepositoryTests
     {
-        [TestMethod]
-        public void
-            ProductPriceRepositoryConstructor_ThrowsArgumentNullException_WhenContextIsNull()
+        private DbContextOptions<SupermarketContext> _options;
+
+        [TestInitialize]
+        public void SetUp()
         {
-            Assert.ThrowsException<ArgumentNullException>(() =>
-                new ProductPriceRepository(null));
+            var dbName = Guid.NewGuid().ToString();
+            _options = new DbContextOptionsBuilder<SupermarketContext>()
+                .UseInMemoryDatabase(databaseName: dbName)
+                .Options;
+        }
+
+        [TestMethod]
+        public void ProductPriceRepositoryConstructor_ThrowsArgumentNullException_WhenContextIsNull()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new ProductPriceRepository(null));
         }
 
         [TestMethod]
         public async Task GetProductPriceAsync_ThrowsArgumentException_WhenSkuIsNull()
         {
+            var repo = new ProductPriceRepository(new SupermarketContext(_options));
             await Assert.ThrowsExceptionAsync<ArgumentException>(() =>
-                GetProductPriceRepository().GetProductPriceAsync(null));
+                repo.GetProductPriceAsync(null));
         }
 
         [TestMethod]
         public async Task GetProductPriceAsync_ThrowsArgumentException_WhenSkuIsEmpty()
         {
+            var repo = new ProductPriceRepository(new SupermarketContext(_options));
             await Assert.ThrowsExceptionAsync<ArgumentException>(() =>
-                GetProductPriceRepository().GetProductPriceAsync(""));
+                repo.GetProductPriceAsync(string.Empty));
         }
 
         [TestMethod]
         public async Task GetProductPriceAsync_ThrowsNotFoundException_WhenProductDoesNotExist()
         {
-            var options = new DbContextOptionsBuilder<SupermarketContext>()
-                .UseInMemoryDatabase(databaseName: "SupermarketTestDB_NotFound")
-                .Options;
-
-            var context = new SupermarketContext(options);
-
+            using var context = new SupermarketContext(_options);
             var repo = new ProductPriceRepository(context);
-
             await Assert.ThrowsExceptionAsync<NotFoundException>(() =>
                 repo.GetProductPriceAsync("NonExistingSku"));
         }
@@ -51,29 +53,72 @@ namespace SupermarketCheckout.Repositories.Ef.Tests
         [TestMethod]
         public async Task GetProductPriceAsync_ReturnsCorrectPrice_WhenProductExists()
         {
-            var options = new DbContextOptionsBuilder<SupermarketContext>()
-                .UseInMemoryDatabase(databaseName: "SupermarketTestDB_Exists")
-                .Options;
+            using (var context = new SupermarketContext(_options)) {
+                // Seed a product into the in-memory database
+                var product = new ProductEntity
+                {
+                    Sku = "ExistingSku",
+                    Price = 50
+                };
+                context.Product.Add(product);
+                await context.SaveChangesAsync();
+            }
 
-            var context = new SupermarketContext(options);
-
-            var product = new ProductEntity { Sku = "A", Price = 50 };
-            context.Product.Add(product);
-            await context.SaveChangesAsync();
-
-            var repo = new ProductPriceRepository(context);
-
-            var result = await repo.GetProductPriceAsync("A");
-
-            Assert.AreEqual(50, result.Price);
+            using (var context = new SupermarketContext(_options)) {
+                var repo = new ProductPriceRepository(context);
+                var result = await repo.GetProductPriceAsync("ExistingSku");
+                Assert.IsNotNull(result);
+                Assert.AreEqual(50, result.Price);
+            }
         }
 
-        private ProductPriceRepository GetProductPriceRepository()
+        [TestMethod]
+        public async Task UpdatePriceAsync_ThrowsArgumentNullException_WhenProductPriceIsNull()
         {
-            return new ProductPriceRepository(
-                new SupermarketContext(new DbContextOptions<SupermarketContext>()));
+            var repo = new ProductPriceRepository(new SupermarketContext(_options));
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() =>
+                repo.UpdatePriceAsync(null, "SomeSku"));
         }
 
-        //TODO: Finish
+        [TestMethod]
+        public async Task UpdatePriceAsync_ThrowsArgumentException_WhenSkuIsNull()
+        {
+            var repo = new ProductPriceRepository(new SupermarketContext(_options));
+            await Assert.ThrowsExceptionAsync<ArgumentException>(() =>
+                repo.UpdatePriceAsync(new ProductPrice(100), null));
+        }
+
+        [TestMethod]
+        public async Task UpdatePriceAsync_ThrowsNotFoundException_WhenProductDoesNotExist()
+        {
+            using var context = new SupermarketContext(_options);
+            var repo = new ProductPriceRepository(context);
+            await Assert.ThrowsExceptionAsync<NotFoundException>(() =>
+                repo.UpdatePriceAsync(new ProductPrice(100), "NonExistingSku"));
+        }
+
+        [TestMethod]
+        public async Task UpdatePriceAsync_UpdatesPrice_WhenProductExists()
+        {
+            using (var context = new SupermarketContext(_options)) {
+                var product = new ProductEntity
+                {
+                    Sku = "UpdateSku",
+                    Price = 50
+                };
+                context.Product.Add(product);
+                await context.SaveChangesAsync();
+            }
+
+            using (var context = new SupermarketContext(_options)) {
+                var repo = new ProductPriceRepository(context);
+                var newPrice = new ProductPrice(75);
+
+                await repo.UpdatePriceAsync(newPrice, "UpdateSku");
+
+                var updatedProduct = await repo.GetProductPriceAsync("UpdateSku");
+                Assert.AreEqual(75m, updatedProduct.Price);
+            }
+        }
     }
 }
